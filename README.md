@@ -18,3 +18,10 @@ The software requirements:
 4. Antimony source code (2.13.3 or greater)(https://github.com/sys-bio/antimony).
 5. Emscripten (1.38.48 or greater) (https://emscripten.org/docs/getting_started/downloads.html).
 
+### Build steps
+After installing this project locally, from a terminal window set the environment variable `LIBANTIMONYJS_DIR` to the root directory of the build (ex: `export LIBANTIMONYJS_DIR=~/build_antimonyjs`). Next `mkdir $LIBANTIMONYJS_DIR/install`, this will be where all of the final files will be located.
+
+1. Build expat library:
+2. Build antimony library:
+3. Build SBML library:
+4. Generate javascript wrapper for antimony library:
