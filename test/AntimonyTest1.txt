@@ -1,0 +1,9 @@
+/* This is an example of a multi-line
+    comment for this tutorial */
+model example2
+  J0: S1 -> S2 + S3; k1*S1 #Mass-action kinetics
+  S1 = 10  #The initial concentration of S1
+  S2 = 0   #The initial concentration of S2
+  S3 = 3   #The initial concentration of S3
+  k1 = 0.1 #The value of the kinetic parameter from J0.
+end
