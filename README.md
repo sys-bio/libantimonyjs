@@ -22,12 +22,12 @@ The software requirements:
 After installing this project locally, from a terminal (BASH) window set the environment variable `LIBANTIMONYJS_DIR` to the root directory of the build (ex: `export LIBANTIMONYJS_DIR=~/build_antjs/libantimonyjs`). Next `mkdir $LIBANTIMONYJS_DIR/install`, this will be where all of the final files will be located.
 
 1. Build expat library:
-   a. Install libexpat into directory `$LIBANTIMONYJS_DIR/expat`
-   b. In the expat directory `mkdir build` and `cd` into this directory.
-   c. Compile libexpat using emcc:
+   - Install libexpat into directory `$LIBANTIMONYJS_DIR/expat`
+   - In the expat directory `mkdir build` and `cd` into this directory.
+   - Compile libexpat using emscripten tool emcmake:
      `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/expat`
-   d. Next: `emmake make`
-   e. Finally: `emmake make install`, libexapt.a should be in the `$LIBANTIMONYJS_DIR/install/expat/lib` directory 
+   - Next: `emmake make`
+   - Finally: `emmake make install`, libexapt.a should be in the `$LIBANTIMONYJS_DIR/install/expat/lib` directory 
 2. Build antimony library:
 3. Build SBML library:
 4. Generate javascript wrapper for antimony library:
