@@ -34,10 +34,17 @@ After installing this project locally, from a terminal (BASH) window set the env
    - Finally: `emmake make install`, libexapt.a should be in the `$LIBANTIMONYJS_DIR/install/expat/lib` directory 
 2. Build SBML library:
    - Install libsbml into directory `$LIBANTIMONYJS_DIR` and rename it `sbml`
+     Ex: `mv libsbml-development sbml`
    - In the sbml directory `mkdir build` and `cd` into this directory.
    - Compile libsbml using emscripten tool emcmake:
      `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/sbml -DCMAKE_BUILD_TYPE=Release -DWITH_CPP_NAMESPACE=ON -DWITH_EXPAT=ON -DWITH_LIBXML=OFF -DENABLE_ARRAYS=ON -DENABLE_COMP=ON -DENABLE_DISTRIB=ON -DENABLE_FBC=ON -DENABLE_GROUPS=ON  -DENABLE_MULTI=ON -DENABLE_QUAL=ON  -DWITH_STABLE_PACKAGES=ON  -DWITH_SWIG=OFF -DEXPAT_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/expat/include -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a`
    - Next `emmake make`
    - Finally: `emmake make install`, libsbml.a should be in the `$LIBANTIMONYJS_DIR/install/sbml/lib` directory 
 3. Build Antimony library:
-5. Generate javascript wrapper for antimony library:
+   - Install antimony into directory `LIBANTIMONYJS_DIR` and rename it `antimony`
+   - In the antimony directory `mkdir build` and `cd` into this directory.
+   - Compile libantimony using emscripten tool emcmake:
+     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/antimony -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -DLIBSBML_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/sbml/include -DLIBSBML_INSTALL_DIR=$LIBANTIMONYJS_DIR/install/sbml -DLIBSBML_LIBRARY=$LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a -DWITH_CELLML=OFF -DWITH_CHECK=OFF -DWITH_COMP_SBML=ON -DWITH_LIBSBML_COMPRESSION=OFF -DWITH_LIBSBML_EXPAT=ON -DWITH_LIBSBML_LIBXML=OFF -DWITH_LIBSBML_XERCES=OFF -DWITH_PYTHON=OFF -DWITH_QTANTIMONY=OFF -DWITH_SBML=ON -DWITH_STATIC_SBML=ON -DWITH_SWIG=OFF`
+   - Next 'emmake make'
+   - Finally `emmake make install`, libantimony.a should be in the `$LIBANTIMONYJS_DIR/install/antimony/lib` directory
+4. Generate javascript wrapper for antimony library:
