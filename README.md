@@ -48,3 +48,9 @@ After installing this project locally, from a terminal (BASH) window set the env
    - Next 'emmake make'
    - Finally `emmake make install`, libantimony.a should be in the `$LIBANTIMONYJS_DIR/install/antimony/lib` directory
 4. Generate javascript wrapper for antimony library:
+   - Once all of the static libraries are built using Emscripten (libexpat.a, libantimony.a, libsbml.a) the javascript wrapper and associated wasm file are generated:
+   - From the `$LIBANTIMONYJS_DIR\install` directory, generate the wrapper files:
+     `emcc -Oz -I$LIBANTIMONYJS_DIR/install/antimony/include -I$LIBANTIMONYJS_DIR/install/sbml/include -I$LIBANTIMONYJS_DIR/install/expat/include  $LIBANTIMONYJS_DIR/install/antimony/lib/libantimony.a $LIBANTIMONYJS_DIR/install/sbml/lib/libsbml.a $LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -sDISABLE_EXCEPTION_CATCHING=0 -s MODULARIZE=1 -s EXPORT_NAME=libantimony -s ALLOW_MEMORY_GROWTH=1 -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll -sEXPORTED_RUNTIME_METHODS=ccall,cwrap`
+     
+## Add/subtract wrapped Antimony API calls.
+It is straightforward to add wrappers for Antimony functions currently not included (Only ~10% of the functions currently have javascript wrappers). Refer to `../antimony/src/antimony_api.h` for available function calls.
