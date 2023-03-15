@@ -14,8 +14,8 @@ It is currently possible to build libantimonyjs on Linux, MacOS and MS Windows S
 The software requirements:
 1. CMake (https://cmake.org/).
 2. Expat source code (2.2.6 or greater) (https://libexpat.github.io/).
-3. a. Libsbml source code version 5.18.0 (https://sourceforge.net/projects/sbml/files/libsbml/). If using Emscripten version 3.1.22 or greater than see b.
-   b. LibSBML source code (development branch) (https://github.com/sbmlteam/libsbml). Using Version <=5.19.0 produces compiler errors with deprecated Standard Library ptr_fun().
+3. * a. Libsbml source code version 5.18.0 (https://sourceforge.net/projects/sbml/files/libsbml/). If using Emscripten version 3.1.22 or greater than see b.
+   * b. LibSBML source code (development branch) (https://github.com/sbmlteam/libsbml). Using Version <=5.19.0 produces compiler errors with deprecated Standard Library ptr_fun().
 5. Antimony source code (2.13.3 or greater)(https://github.com/sys-bio/antimony).
 6. Emscripten (3.1.20) (https://emscripten.org/docs/getting_started/downloads.html). Do not install latest version, use 3.1.20.
    - After installing Emscripten, remember to set up the EMSDK environment: 
