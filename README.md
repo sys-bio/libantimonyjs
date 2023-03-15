@@ -14,13 +14,14 @@ It is currently possible to build libantimonyjs on Linux, MacOS and MS Windows S
 The software requirements:
 1. CMake (https://cmake.org/).
 2. Expat source code (2.2.6 or greater) (https://libexpat.github.io/).
-3. LibSBML source code (development branch) (https://github.com/sbmlteam/libsbml). Using Version 5.19.0 produces compiler errors with deprecated Standard Library ptr_fun().
-4. Antimony source code (2.13.3 or greater)(https://github.com/sys-bio/antimony).
-5. Emscripten (1.38.48 or greater) (https://emscripten.org/docs/getting_started/downloads.html).
+3. a. Libsbml source code version 5.18.0 (https://sourceforge.net/projects/sbml/files/libsbml/). If using Emscripten version 3.1.22 or greater than see b.
+   b. LibSBML source code (development branch) (https://github.com/sbmlteam/libsbml). Using Version <=5.19.0 produces compiler errors with deprecated Standard Library ptr_fun().
+5. Antimony source code (2.13.3 or greater)(https://github.com/sys-bio/antimony).
+6. Emscripten (3.1.20) (https://emscripten.org/docs/getting_started/downloads.html). Do not install latest version, use 3.1.20.
    - After installing Emscripten, remember to set up the EMSDK environment: 
    - Ex: ``` source "/home/user/emsdk_install_dir/emsdk_env.sh" ```
    - Check by typing `emcc -v` in your home directory.
-
+   Note: if using later version of Emscripten then use libsbml dev branch (or release > 5.19.0).
 
 ### Build steps
 After installing this project locally, from a terminal (BASH) window set the environment variable `LIBANTIMONYJS_DIR` to the root directory of the build (ex: `export LIBANTIMONYJS_DIR=~/build_antjs/libantimonyjs`). Next `mkdir $LIBANTIMONYJS_DIR/install`, this will be where all of the final files will be located.
@@ -37,14 +38,14 @@ After installing this project locally, from a terminal (BASH) window set the env
      Ex: `mv libsbml-development sbml`
    - In the sbml directory `mkdir build` and `cd` into this directory.
    - Compile libsbml using emscripten tool emcmake:
-     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/sbml -DCMAKE_BUILD_TYPE=Release -DWITH_CPP_NAMESPACE=ON -DWITH_EXPAT=ON -DWITH_LIBXML=OFF -DENABLE_ARRAYS=ON -DENABLE_COMP=ON -DENABLE_DISTRIB=ON -DENABLE_FBC=ON -DENABLE_GROUPS=ON  -DENABLE_MULTI=ON -DENABLE_QUAL=ON  -DWITH_STABLE_PACKAGES=ON  -DWITH_SWIG=OFF -DEXPAT_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/expat/include -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a`
+     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/sbml -DCMAKE_BUILD_TYPE=Release -DWITH_CPP_NAMESPACE=ON -DWITH_EXPAT=ON -DWITH_LIBXML=OFF -DENABLE_ARRAYS=ON -DENABLE_COMP=ON -DENABLE_DISTRIB=ON -DENABLE_FBC=ON -DENABLE_GROUPS=ON  -DENABLE_MULTI=ON -DENABLE_QUAL=ON  -DWITH_STABLE_PACKAGES=ON  -DWITH_SWIG=OFF -DLIBEXPAT_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/expat/include -DLIBEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a`
    - Next `emmake make`
    - Finally: `emmake make install`, libsbml.a should be in the `$LIBANTIMONYJS_DIR/install/sbml/lib` directory 
 3. Build Antimony library:
    - Install antimony into directory `LIBANTIMONYJS_DIR` and rename it `antimony`
    - In the antimony directory `mkdir build` and `cd` into this directory.
    - Compile libantimony using emscripten tool emcmake:
-     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/antimony -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -DLIBSBML_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/sbml/include -DLIBSBML_INSTALL_DIR=$LIBANTIMONYJS_DIR/install/sbml -DLIBSBML_LIBRARY=$LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a -DWITH_CELLML=OFF -DWITH_CHECK=OFF -DWITH_COMP_SBML=ON -DWITH_LIBSBML_COMPRESSION=OFF -DWITH_LIBSBML_EXPAT=ON -DWITH_LIBSBML_LIBXML=OFF -DWITH_LIBSBML_XERCES=OFF -DWITH_PYTHON=OFF -DWITH_QTANTIMONY=OFF -DWITH_SBML=ON -DWITH_STATIC_SBML=ON -DWITH_SWIG=OFF`
+     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/antimony -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -DLIBSBML_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/sbml/include -DLIBSBML_INSTALL_DIR=$LIBANTIMONYJS_DIR/install/sbml -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a -DWITH_CELLML=OFF -DWITH_CHECK=OFF -DWITH_COMP_SBML=ON -DWITH_LIBSBML_COMPRESSION=OFF -DWITH_LIBSBML_EXPAT=ON -DWITH_LIBSBML_LIBXML=OFF -DWITH_LIBSBML_XERCES=OFF -DWITH_PYTHON=OFF -DWITH_QTANTIMONY=OFF -DWITH_SBML=ON -DWITH_STATIC_SBML=ON -DWITH_SWIG=OFF`
    - Next 'emmake make'
    - Finally `emmake make install`, libantimony.a should be in the `$LIBANTIMONYJS_DIR/install/antimony/lib` directory
 4. Generate javascript wrapper for antimony library:
