@@ -1,0 +1,189 @@
+// Created by libAntimony v2.12.0.3
+model Goldbeter1990_CalciumSpike_CICR()
+  //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+  //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+
+ // Compartments and Species:
+  compartment cytosol, store;
+  species Z in cytosol, Y in store;
+
+  // Reactions:
+  R0:  => Z; cytosol*v0;
+  R1:  => Z; cytosol*v1*beta;
+  R2: Z => Y; cytosol*(Vm2*Z^n/(K2^n + Z^n));
+  R3: Y => Z; store*(Vm3*Y^m*Z^p/((Kr^m + Y^m)*(Ka^p + Z^p)));
+  Rf: Y => Z; store*kf*Y;
+  R_eff: Z => ; cytosol*k*Z;
+
+  // Species initializations:
+  Z = 0.15;
+  Y = 1.6;
+
+  // Compartment initializations:
+  cytosol = 1;
+  store = 1;
+
+  // Variable initializations:
+  v0 = 1;
+  v0 has uM_per_sec;
+  v1 = 7.3;
+  v1 has uM_per_sec;
+  beta = 0.301;
+  beta has dimensionless;
+  Vm2 = 65;
+  Vm2 has uM_per_sec;
+  n = 2;
+  n has dimensionless;
+  K2 = 1;
+  K2 has uM;
+  Vm3 = 500;
+  Vm3 has uM_per_sec;
+  m = 2;
+  m has dimensionless;
+  Kr = 2;
+  Kr has uM;
+  Ka = 0.9;
+  Ka has uM;
+  kf = 1;
+  kf has sec_inv;
+  k = 10;
+  k has sec_inv;
+  p = 4;
+  p has dimensionless;
+
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the causes of the extended
+//inflammation phase. We describe a mathematical model which offers a possible
+//explanation for diabetic wound healing in terms of the distribution of
+//macrophage phenotypes being altered in the diabetic patient compared to normal
+//wound repair. As a consequence of this, we put forward a suggestion for
+//treatment based on rectifying the macrophage phenotype imbalance.   
+ //         Wound healing in diabetes is a complex process, characterised by a chronic
+  //inflammation phase. The exact mechanism by which this occurs is not fully
+//understood, and whilst several treatments for healing diabetic wounds exist,
+//very little research has been conducted towards the ca
+  
+
+  // Other declarations:
+  const cytosol, store, v0, v1, beta, Vm2, n, K2, Vm3, m, Kr, Ka, kf, k, p;
+
+  // Unit definitions:
+  unit substance = 1e-6 mole;
+  unit uM_per_sec = 1e-6 mole / (litre * second);
+  unit sec_inv = 1 / second;
+  unit uM = 1e-6 mole / litre;
+
+  // Display Names:
+  substance is "micromole";
+  R0 is "Ca influx";
+  R1 is "InsP3 dependent Ca influx";
+  R2 is "ATP driven Ca pumping into store";
+  R3 is "ATP driven pumping into cytosol";
+  Rf is "Ca leak";
+  R_eff is "Ca efflux";
+
+  // CV terms:
+  cytosol identity "http://identifiers.org/go/GO:0005829"
+  store identity "http://identifiers.org/go/GO:0005783"
+  Z identity "http://identifiers.org/chebi/CHEBI:29108",
+             "http://identifiers.org/kegg.compound/C00076"
+  Y identity "http://identifiers.org/chebi/CHEBI:29108",
+             "http://identifiers.org/kegg.compound/C00076"
+  R0 identity "http://identifiers.org/go/GO:0006816"
+  R1 identity "http://identifiers.org/go/GO:0005220"
+  R2 identity "http://identifiers.org/go/GO:0032470"
+  R3 identity "http://identifiers.org/go/GO:0007204",
+              "http://identifiers.org/go/GO:0048763"
+  Rf identity "http://identifiers.org/go/GO:0007204"
+  R_eff identity "http://identifiers.org/go/GO:0006816"
+end
