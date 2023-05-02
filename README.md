@@ -44,7 +44,7 @@ After installing this project locally, from a terminal (BASH) window set the env
    - Compile libsbml using emscripten tool emcmake:
      `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/sbml -DCMAKE_BUILD_TYPE=Release -DWITH_CPP_NAMESPACE=ON -DWITH_EXPAT=ON -DWITH_LIBXML=OFF -DLIBSBML_SKIP_SHARED_LIBRARY=ON -DENABLE_ARRAYS=ON -DENABLE_COMP=ON -DENABLE_DISTRIB=ON -DENABLE_FBC=ON -DENABLE_GROUPS=ON -DENABLE_MULTI=ON -DENABLE_QUAL=ON -DWITH_STABLE_PACKAGES=ON -DWITH_SWIG=OFF -DEXPAT_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/expat/include -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a`
    - Next `emmake make`
-   - Finally: `emmake make install`, libsbml.a should be in the `$LIBANTIMONYJS_DIR/install/sbml/lib` directory 
+   - Finally: `emmake make install`, libsbml-static.a should be in the `$LIBANTIMONYJS_DIR/install/sbml/lib` directory 
 3. Build Antimony library:
    - Install antimony src code into directory `LIBANTIMONYJS_DIR` and rename it `antimony`
    - In the antimony directory `mkdir build` and `cd` into this directory.
