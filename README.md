@@ -7,6 +7,7 @@ This repository hosts the build instructions and scripts for the JavaScript wrap
 ## Project structure
 - `docs` directory: Demo page and information for incorporating libantimonyjs in a javascript project.
 - `test` directory: Test models and test web page
+- `scripts` directory: Build scripts
 - `release` directory: Released javascript wrapper and associated wasm files (libantimony.js and libantimony.wasm) built from instructions below.
 
 ## Building libantimonyjs
