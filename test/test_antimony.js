@@ -1,15 +1,9 @@
-<html lang="en">
-  <head>
-  <script src="libantimony.js" type="text/javascript"></script>
-  <script src="libantimony.wasm" type="application/wasm"> </script>  
-  </head>
-	
-<body>
 
-<!-- Test Antimony javascript library -->
+// For use in nodejs environment.
+// Test Antimony javascript library 
+const libantimony = require( './libantimony.js'); // libantimony.js in local dir
 
-
-<script type="text/javascript">
+console.log('Starting script...');
 var antString = "model example1; S1 -> S2; k1*S ; S1 = 550; S2 = 0;  k1 = 0.1; end"
 var antCode;
 var sbmlCode;
@@ -18,7 +12,7 @@ var antResult = 'None';
 
 var loadAntimonyString; // libantimony function
 var loadString;		// 		"
-var loadSBMLString;	//		"
+var loadSBMLString;	//		" 
 var getSBMLString;	//		"
 var getAntimonyString;	//		"
 var getCompSBMLString;	//		"
@@ -31,34 +25,47 @@ var freeAll;		 //		"
 var jsAllocateUTF8;  // emscripten function
 var jsUTF8ToString;  //     "
 var jsFree;          // 	"
+
+// run tests:
+runAntimonyCheck();
+
 // Load library functions (asynchronous call):
-try {
- libantimony().then((libantimony) => {
+function loadAntLib(myCallBack) {
+ try {
+  libantimony().then((libantimony) => {
  //	Format: libantimony.cwrap( function name, return type, input param array of types).
- loadString = libantimony.cwrap('loadString', 'number', ['string']);
- loadAntimonyString = libantimony.cwrap('loadAntimonyString', 'number', ['string']);
- loadSBMLString = libantimony.cwrap('loadSBMLString', 'number', ['string']);
- getSBMLString = libantimony.cwrap('getSBMLString', 'string', ['null']);
- getAntimonyString = libantimony.cwrap('getAntimonyString', 'string', ['null']);
- getCompSBMLString = libantimony.cwrap('getCompSBMLString', 'string', ['string']); 
- clearPreviousLoads = libantimony.cwrap('clearPreviousLoads', 'null', ['null']);
- getLastError = libantimony.cwrap('getLastError', 'string', ['null']);
- getWarnings = libantimony.cwrap('getWarnings', 'string', ['null']);
- getSBMLInfoMessages = libantimony.cwrap('getSBMLInfoMessages', 'string', ['string']);
- getSBMLWarnings = libantimony.cwrap('getSBMLWarnings', 'string', ['string']);
- freeAll = libantimony.cwrap('freeAll', 'null', ['null']);
- jsAllocateUTF8 = (newStr) => libantimony.allocateUTF8(newStr);
- jsUTF8ToString = (strPtr) => libantimony.UTF8ToString(strPtr);
- jsFree = (strPtr) => libantimony._free(strPtr);
- });
-}
-catch(err) {
+   loadString = libantimony.cwrap('loadString', 'number', ['string']);
+   loadAntimonyString = libantimony.cwrap('loadAntimonyString', 'number', ['string']);
+   loadSBMLString = libantimony.cwrap('loadSBMLString', 'number', ['string']);
+   getSBMLString = libantimony.cwrap('getSBMLString', 'string', ['null']);
+   getAntimonyString = libantimony.cwrap('getAntimonyString', 'string', ['null']);
+   getCompSBMLString = libantimony.cwrap('getCompSBMLString', 'string', ['string']); 
+   clearPreviousLoads = libantimony.cwrap('clearPreviousLoads', 'null', ['null']);
+   getLastError = libantimony.cwrap('getLastError', 'string', ['null']);
+   getWarnings = libantimony.cwrap('getWarnings', 'string', ['null']);
+   getSBMLInfoMessages = libantimony.cwrap('getSBMLInfoMessages', 'string', ['string']);
+   getSBMLWarnings = libantimony.cwrap('getSBMLWarnings', 'string', ['string']);
+   freeAll = libantimony.cwrap('freeAll', 'null', ['null']);
+   jsAllocateUTF8 = (newStr) => libantimony.allocateUTF8(newStr);
+   jsUTF8ToString = (strPtr) => libantimony.UTF8ToString(strPtr);
+   jsFree = (strPtr) => libantimony._free(strPtr);
+   myCallBack();
+   
+   });
+ }
+ catch(err) {
   console.log('Load libantimony error: ', err);
+ }
 }
 
 
 // Test basic functionality: returns 1 if no errors
 function runAntimonyCheck() {
+  loadAntLib(runTests);
+}
+
+// Callback function that run tests:
+function runTests() {
   var pass = 0; //Keep track of number of tests that pass
   var fail = 0;
   var antResult = "nothing";  
@@ -170,95 +177,67 @@ function runAntimonyCheck() {
     return 1;
   } else { return 0;} // fail
 }
-</script>
 
-
-
-
-<script type="text/javascript">
-
-function processAntimony() {
- antCode = document.getElementById("antimonycode").value;
+// ***************************************
+// Functions not used in runTests()
+// Use them for browser testing as needed:
+// ***************************************
+function processAntimony(antStr) {
  clearPreviousLoads();
- //console.log("*** Antimony code: ",antCode);
- var ptrAntCode = jsAllocateUTF8(antCode);
+ sbmlResult = 'nothing';
+ //console.log("*** Antimony code: ",antStr);
+ var ptrAntCode = jsAllocateUTF8(antStr);
  var load_int= loadAntimonyString(ptrAntCode);
  console.log("processAntimony: int returned: ", load_int);
  if (load_int > 0) {
    sbmlResult = getSBMLString(); 
-  // document.getElementById("sbmlcode").value = sbmlResult;
-  // document.getElementById("procSBMLBtn").disabled = false;
+
  }
  else { 
    var errStr = getLastError();
-   window.alert(errStr); }
+   console.log(errStr); }
 
 }
 
-function processSBML() {
- sbmlCode = document.getElementById("sbmlcode").value;
+function processSBML(sbmlStr) {
+ //sbmlCode = document.getElementById("sbmlcode").value;
  clearPreviousLoads();
- var ptrSBMLCode = jsAllocateUTF8(sbmlCode);
+ antResult = 'nothing';
+ var ptrSBMLCode = jsAllocateUTF8(sbmlStr);
  var load_int= loadSBMLString(ptrSBMLCode);
  console.log("processSBML: int returned: ", load_int);
  if (load_int > 0) {
    antResult = getAntimonyString(); 
- //  document.getElementById("antimonycode").value = antResult;
- //  document.getElementById("procAntimonyBtn").disabled = false;
+ 
  }
  else { 
    var errStr = getLastError();
-   window.alert(errStr); 
+   console.log(errStr); 
    }
 
- 
+ return antResult
 }
  async function processFile(fileStr) {
   if(fileStr.length > 1000000){
-    alert('Model file is very large and may take a minute or more to process!');
+    console.log('Model file is very large and may take a minute or more to process!');
   }
   try {
 	clearPreviousLoads;
     var ptrFileStr = jsAllocateUTF8(fileStr);
     if (loadAntimonyString(ptrFileStr) > 0) {
-      //document.getElementById("antimonycode").value = fileStr;
-      procSBMLBtn.disabled = true;
-      //document.getElementById("sbmlcode").value = "[SBML code here.]";
-      await processAntimony();
-	  
+      processAntimony();
     } else if (loadSBMLString(ptrFileStr) > 0) {
-     // document.getElementById("sbmlcode").value = fileStr;
-      procAntimonyBtn.disabled = true;
-     // document.getElementById("antimonycode").value = "[Antimony code here.]";
-	  
-      await processSBML();
-	  
+        processSBML();  
     } else {
       var errStr = getLastError();
-      window.alert(errStr);
+      console.log(errStr);
       clearPreviousLoads();
-    }
+      }
   } catch (err) {
     console.log("processing file error: :", err);
-    window.alert(err);
-  }
+    }
   jsFree(ptrFileStr);
 }
 
-</script>
-<p>
-<strong>Test the libAntimony functions from within JavaScript. </strong>
-</p>
-
-</br>
-<p>
-<li><button onclick="runAntimonyCheck()">Test library, View in console.</button></li>
-</br>
-</ul>
-
-</p>
-
-</body>
 
 
-</html>
