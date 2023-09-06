@@ -172,6 +172,32 @@ function runTests() {
     //console.log('getSBMLInfoMessages(): ', sbmlInfo);// none expected
     //console.log('getSBMLWarnings(): ', sbmlWarn); // none expected, 
     }
+
+  // **************************************	
+  testCase = "Test 6: getCompSBMLString()";
+  const antComposite = "model feedback(); J0: $X0 -> S1; (VM1 * (X0 - S1/Keq1))/(1 + X0 + S1 + S4^h); J1: S1 -> S2; (10 * S1 - 2 * S2) / (1 + S1 + S2); S1 = 0; S2 = 0; S4 = 0; X0 = 10; X1 = 0; Keq1 = 10; VM1 = 10;  h = 10; end; model myModelTwo(); J0: S1 -> S2; (5 * S1 - S2) / (1 + S2); S1 = 5; S2 = 0; end; model compA(); A: feedback(); B: myModelTwo(); A.S1 = 2; JcompA: A.S1 + B.S1 -> B.S2; kcomp*(A.S1 + B.S1); kcomp = 1;end;"
+  
+  clearPreviousLoads();  
+  sbmlResult = 'none';
+  intResult = 0;
+  intResult = loadAntimonyString(antComposite);
+  if(intResult < 0) {
+    console.log(testCase ,': ** Failed ->', getLastError());
+	fail++;
+  }
+  else {
+    intResult = 0;
+    sbmlResult = getCompSBMLString("compA");	  
+	if (sbmlResult.includes('speciesReference species="B_S1" stoichiometry="1" constant="true"')) {
+	  console.log(testCase ,': Pass');
+	  pass++;	
+	} else {
+		console.log(testCase ,': ** Failed -> Returned SBML model is not what was expected.');
+	    fail++;
+	  }
+  }	  
+	
+	
   console.log('Pass: ', pass,', Fail: ', fail);
   if (fail == 0){ 
     return 1;
