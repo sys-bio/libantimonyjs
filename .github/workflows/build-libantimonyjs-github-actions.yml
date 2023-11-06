@@ -15,6 +15,7 @@ jobs:
         run: git clone https://github.com/emscripten-core/emsdk.git 
       - name: change emsdk script permissions
         run: chmod +x emsdk.sh
+        working-directory: emsdk
       - name: install emscripten sdk
         run: ./emsdk install 3.1.20
         working-directory: emsdk
