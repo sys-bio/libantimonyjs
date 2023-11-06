@@ -17,7 +17,7 @@ jobs:
         run: ls
         working-directory: emsdk
       - name: change emsdk script permissions
-        run: chmod +x emsdk.sh
+        run: chmod +x emsdk
         working-directory: emsdk
       - name: install emscripten sdk
         run: ./emsdk install 3.1.20
