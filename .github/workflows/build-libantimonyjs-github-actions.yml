@@ -13,9 +13,9 @@ jobs:
       - run: bats -v
       - run: pwd
       - run: mkdir tools
-        working-directory: ./tools
+        working-directory: tools
       - run: pwd
       - run: git clone https://github.com/emscripten-core/emsdk.git
-        working-directory: ./emsdk
+        working-directory: tools/emsdk
       - run: pwd
       - run: ./emsdk install 3.1.20
