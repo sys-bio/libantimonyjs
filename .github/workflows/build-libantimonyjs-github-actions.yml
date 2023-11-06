@@ -2,7 +2,7 @@ name: build-libantimoyjs-github-actions
 run-name: ${{ github.actor }} is building libantimonyjs
 on: [push]
 jobs:
-  check-bats-version:
+  build-new-version-antimonyjs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -13,9 +13,9 @@ jobs:
       - run: bats -v
       - run: pwd
       - run: mkdir tools
-      - run: cd tools
+      - run: working-directory: ./tools
       - run: pwd
       - run: git clone https://github.com/emscripten-core/emsdk.git
-      - run: cd emsdk
+      - run: working-directory: ./emsdk
       - run: pwd
       - run: ./emsdk install 3.1.20
