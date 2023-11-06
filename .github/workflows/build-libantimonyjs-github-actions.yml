@@ -13,9 +13,10 @@ jobs:
       - run: bats -v
       - name: get emscripten
         run: git clone https://github.com/emscripten-core/emsdk.git 
-        working-directory: tools
       - name: install emscripten sdk
+        run: cd emsdk
+        run: chmod +x emsdk.sh
         run: ./emsdk install 3.1.20
-        working-directory: tools/emsdk
+        working-directory: emsdk
       - run: pwd
         
