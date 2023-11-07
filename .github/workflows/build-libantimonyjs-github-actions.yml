@@ -4,6 +4,9 @@ on: [push]
 jobs:
   build-new-version-antimonyjs:
     runs-on: ubuntu-latest
+    env:
+       EMSDK: $GITHUB_WORKSPACE/emsdk
+       EMSDK_NODE: $GITHUB_WORKSPACE/emsdk/node/16.20.0_64bit/bin/node
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -30,7 +33,7 @@ jobs:
       - run: echo "$GITHUB_WORKSPACE/emsdk" >> $GITHUB_PATH
       - name: set permissions for emsdk_env.sh, not necessary??
         run: chmod +x emsdk/emsdk_env.sh
-      - name: Set up emscripten environment
+      - name: Set up emscripten environment, does not work, remove.
         run: ./emsdk_env.sh
         working-directory: emsdk
       - run: echo $GITHUB_PATH
