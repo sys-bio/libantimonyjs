@@ -5,7 +5,7 @@ jobs:
   build-new-version-antimonyjs:
     runs-on: ubuntu-latest
     env:
-       EMSDK: $GITHUB_WORKSPACE/emsdk
+       EMSDK: "$GITHUB_WORKSPACE/emsdk"
        EMSDK_NODE: $GITHUB_WORKSPACE/emsdk/node/16.20.0_64bit/bin/node
     steps:
       - uses: actions/checkout@v4
