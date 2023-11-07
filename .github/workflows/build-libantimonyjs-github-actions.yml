@@ -37,6 +37,8 @@ jobs:
       - name: confirm emscripten works
         run: emcc -v
       - run: echo $PATH
+      - run: echo $EMSDK
+      - run: echo $EMSDK_NODE
       
         
         
