@@ -42,7 +42,8 @@ jobs:
       - run: echo $LIBANTIMONY_JS
       - name: Run libantimony build script
         run: scripts/buildLibAntjs
-        
+        with:
+          password: ${{ secrets.ACCESS_TOKEN }}
         
       
         
