@@ -24,7 +24,8 @@ jobs:
         working-directory: emsdk
       - run: pwd
       - run: echo $HOME
-      - run: chmod +x $HOME/libantimonyjs/libantimonyjs/emsdk/emsdk_env.sh
+      - name: set permissions for emsdk_env.sh
+        run: chmod +x emsdk/emsdk_env.sh
       - name: Set up emscripten environment
         run: ./emsdk_env.sh
         working-directory: emsdk
