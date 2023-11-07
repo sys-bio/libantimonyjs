@@ -8,6 +8,7 @@ jobs:
        EMSDK: emsdk
        EMSDK_NODE: emsdk/node/16.20.0_64bit/bin/node
        LIBANTIMONYJS_DIR: libantimonyjs
+       SBML_VERS: "5.20.0"
     steps:
       - uses: actions/checkout@v4
       - run: ls
@@ -51,6 +52,23 @@ jobs:
       - name: install expat lib
         run: emmake make install
         working-directory: expat/build
+      - name: Get libSBML
+        run: wget https://github.com/sbmlteam/libsbml/archive/refs/tags/v$SBML_VERS.zip 
+      - run: unzip v$SBML_VERS.zip
+      - run: mv libsbml-$SBML_VERS libsbml
+      - name: make libsbml build dir
+        run: mkdir build
+        working-directory: libsbml
+      - name: build libsbml lib
+        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/sbml -DCMAKE_BUILD_TYPE=Release -DWITH_CPP_NAMESPACE=ON -DWITH_EXPAT=ON -DWITH_LIBXML=OFF -DLIBSBML_SKIP_SHARED_LIBRARY=ON -DENABLE_ARRAYS=ON -DENABLE_COMP=ON -DENABLE_DISTRIB=ON -DENABLE_FBC=ON -DENABLE_GROUPS=ON -DENABLE_MULTI=ON -DENABLE_QUAL=ON -DWITH_STABLE_PACKAGES=ON -DWITH_SWIG=OFF -DEXPAT_INCLUDE_DIR=$GITHUB_WORKSPACE/install/expat/include -DEXPAT_LIBRARY=$GITHUB_WORKSPACE/install/expat/lib/libexpat.a
+        working-directory: libsbml/build
+      - name: make libsbml lib
+        run: emmake make
+        working-directory: libsbml/build  
+      - name: install libsbml
+        run: emmake make install
+        working-directory: libsbml/build
+        
         
       
         
