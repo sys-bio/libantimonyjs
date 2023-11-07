@@ -27,7 +27,8 @@ jobs:
         working-directory: emsdk
       - run: pwd
       - run: echo "$GITHUB_WORKSPACE/emsdk/upstream/emscripten" >> $GITHUB_PATH
-      - name: set permissions for emsdk_env.sh
+      - run: echo "$GITHUB_WORKSPACE/emsdk" >> $GITHUB_PATH
+      - name: set permissions for emsdk_env.sh, not necessary??
         run: chmod +x emsdk/emsdk_env.sh
       - name: Set up emscripten environment
         run: ./emsdk_env.sh
