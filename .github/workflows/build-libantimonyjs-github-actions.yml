@@ -40,10 +40,22 @@ jobs:
       - run: echo $EMSDK
       - run: echo $EMSDK_NODE
       - run: echo $LIBANTIMONY_JS
-      - run: chmod +x scripts/buildLibAntjs
-      - name: Run libantimony build script
-        run: scripts/buildLibAntjs
-        
+      - run: mkdir install
+      - run: wget https://github.com/libexpat/libexpat/releases/download/R_2_2_10/expat-2.2.10.tar.bz2
+      - run: tar -xf expat-2.2.10.tar.bz2
+      - run: mv expat-2.2.10 expat
+      - name: make expat build dir
+        run: mkdir build
+        working-directory: expat
+      - name: build expat lib
+        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/expat
+        working-directory: expat/build
+      - name: make expat lib
+        run: emmake make
+        working-directory: expat/build  
+      - name: install expat lib
+        run: emmake make install
+        working-directory: expat/build
         
       
         
