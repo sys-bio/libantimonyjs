@@ -33,8 +33,8 @@ jobs:
         run: ./emsdk_env.sh
         working-directory: emsdk
       - name: confirm emscripten works
-        run: emcc -v
-        working-directory: emsdk
+        run: ./emcc -v
+        working-directory: emsdk/upstream/emscripten
       - run: echo $PATH
         
         
