@@ -34,5 +34,7 @@ jobs:
         working-directory: emsdk
       - name: confirm emscripten works
         run: emcc -v
+        working-directory: emsdk
+      - run: echo $PATH
         
         
