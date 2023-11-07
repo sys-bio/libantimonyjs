@@ -23,6 +23,12 @@ jobs:
         run: ./emsdk install 3.1.20
         working-directory: emsdk
       - run: pwd
-      - name: Show files changed
-        run: echo $HOME
+      - run: echo $HOME
+      - run: chmod +x $HOME/emsdk/emsdk_env.sh
+      - name: Set up emscripten environment
+        run: ./emsdk_env.sh
+        working-directory: emsdk
+      - name: confirm emscripten works
+        run: emcc -v
+        
         
