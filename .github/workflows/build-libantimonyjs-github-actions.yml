@@ -40,6 +40,10 @@ jobs:
       - run: echo $EMSDK
       - run: echo $EMSDK_NODE
       - run: echo $LIBANTIMONY_JS
+      - name: Run libantimony build script
+        run: scripts/buildLibAntjs
+        
+        
       
         
         
