@@ -26,15 +26,16 @@ jobs:
         run: ./emsdk activate 3.1.20
         working-directory: emsdk
       - run: pwd
-      - run: echo $GITHUB_WORKSPACE
+      - run: echo "$GITHUB_WORKSPACE/emsdk/upstream/emscripten" >> $GITHUB_PATH
       - name: set permissions for emsdk_env.sh
         run: chmod +x emsdk/emsdk_env.sh
       - name: Set up emscripten environment
         run: ./emsdk_env.sh
         working-directory: emsdk
+      - run: echo $GITHUB_PATH
       - name: confirm emscripten works
-        run: ./emcc -v
-        working-directory: emsdk/upstream/emscripten
+        run: emcc -v
       - run: echo $PATH
+      
         
         
