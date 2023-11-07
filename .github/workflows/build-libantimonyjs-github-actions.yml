@@ -48,7 +48,7 @@ jobs:
         run: mkdir build
         working-directory: expat
       - name: build expat lib
-        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/expat
+        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=install/expat
         working-directory: expat/build
       - name: make expat lib
         run: emmake make
