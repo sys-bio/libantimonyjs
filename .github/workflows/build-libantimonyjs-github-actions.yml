@@ -40,10 +40,10 @@ jobs:
       - run: echo $EMSDK
       - run: echo $EMSDK_NODE
       - run: echo $LIBANTIMONY_JS
+      - run: chmod +x scripts/buildLibAntjs
       - name: Run libantimony build script
         run: scripts/buildLibAntjs
-        with:
-          password: ${{ secrets.ACCESS_TOKEN }}
+        
         
       
         
