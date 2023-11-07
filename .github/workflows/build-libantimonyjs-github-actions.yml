@@ -5,15 +5,12 @@ jobs:
   build-new-version-antimonyjs:
     runs-on: ubuntu-latest
     env:
-       EMSDK: "$GITHUB_WORKSPACE/emsdk"
+       EMSDK: $GITHUB_WORKSPACE/emsdk
        EMSDK_NODE: $GITHUB_WORKSPACE/emsdk/node/16.20.0_64bit/bin/node
+       LIBANTIMONYJS_DIR: $GITHUB_WORKSPACE/libantimonyjs
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      - run: ls
       - name: get emscripten
         run: git clone https://github.com/emscripten-core/emsdk.git 
       - name: list files
@@ -42,6 +39,7 @@ jobs:
       - run: echo $PATH
       - run: echo $EMSDK
       - run: echo $EMSDK_NODE
+      - run: echo $LIBANTIMONY_JS
       
         
         
