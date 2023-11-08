@@ -11,10 +11,10 @@ jobs:
        ANT_VERS: "2.13.3"
     steps:
       - uses: actions/checkout@v4
-      - name: Commit new libantimony files
+      - name: Make new release dir
         run: mkdir v$ANT_VERS
         working-directory: release
-      - name: new libantimony files
+      - name: check new release dir
         run: ls
         working-directory: release 
       - name: new libantimony files
@@ -24,8 +24,8 @@ jobs:
         run: cp list.txt $GITHUB_WORKSPACE/release/v$ANT_VERS
         working-directory: release
       - name: check file copy
-        run: ls
-        working-directory: release/v$ANT_VERS
+        run: ls -l v$ANT_VERS
+        working-directory: release
       
         
         
