@@ -8,7 +8,7 @@ jobs:
        EMSDK: emsdk
        EMSDK_NODE: emsdk/node/16.20.0_64bit/bin/node
        SBML_VERS: "5.20.0"
-       ANT_VERS: "2.13.4"
+       ANT_VERS: "2.13.3"
     steps:
       - uses: actions/checkout@v4
       - name: get emscripten
@@ -100,14 +100,20 @@ jobs:
       - name: Check test results
         run: grep 'Fail- 0' results.txt
         working-directory: test
+      - name: Commit new libantimony files
+        run: mkdir v$ANT_VERS
+        working-directory: release
+      - name: Copy libantimonyjs to release dir
+        run: cp libantimony.* $GITHUB_WORKSPACE/release/v$ANT_VERS
+        working-directory: install
       - run: |
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add libantimony.js libantimony.wasm generated.txt
-          git commit -m "generated"
+          git add libantimony.js libantimony.wasm
+          git commit -m "new build for antimony v$ANT_VERS"
           git push
-        working-directory: test
+        working-directory: release/v$ANT_VERS
         
        
         
