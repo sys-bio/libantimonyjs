@@ -110,10 +110,10 @@ jobs:
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add libantimony.js libantimony.wasm
+          git add v$ANT_VERS/libantimony.js v$ANT_VERS/libantimony.wasm
           git commit -m "new build for antimony v$ANT_VERS"
           git push
-        working-directory: release/v$ANT_VERS
+        working-directory: release
         
        
         
