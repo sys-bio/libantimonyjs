@@ -84,7 +84,7 @@ jobs:
         run: ls -l
         working-directory: install
       - name: Copy libantimonyjs to test dir
-        run: cp libantimonyjs.* test
+        run: cp libantimony.* test
         working-directory: install
       - name: check built files exist
         run: ls -l
