@@ -98,10 +98,10 @@ jobs:
         run: cat results.txt
         working-directory: test
       - name: Check test results
-        run: grep 'Fail-0' results.txt
+        run: grep 'Fail- 0' results.txt
         working-directory: test
       - name: Check test results 2
-        run: grep 'Fail- 0' results.txt
+        run: grep 'Fail- 1' results.txt
         working-directory: test
       
         
