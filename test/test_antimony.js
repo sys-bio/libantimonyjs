@@ -198,7 +198,7 @@ function runTests() {
   }	  
 	
 	
-  console.log('Pass: ', pass,', Fail: ', fail);
+  console.log('Pass-', pass,', Fail-', fail);
   if (fail == 0){ 
     return 1;
   } else { return 0;} // fail
