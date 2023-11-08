@@ -84,7 +84,7 @@ jobs:
         run: emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$GITHUB_WORKSPACE/install/antimony/include -I$GITHUB_WORKSPACE/install/sbml/include -I$GITHUB_WORKSPACE/install/expat/include $GITHUB_WORKSPACE/install/antimony/lib/libantimony.a $GITHUB_WORKSPACE/install/sbml/lib/libsbml-static.a $GITHUB_WORKSPACE/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,allocateUTF8,UTF8ToString
         working-directory: install
       - name: List build libantimonyjs files
-        run: ls
+        run: ls -l
         working-directory: install
         
         
