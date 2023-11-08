@@ -84,11 +84,18 @@ jobs:
         run: ls -l
         working-directory: install
       - name: Copy libantimonyjs to test dir
-        run: cp libantimony.* test
+        run: cp libantimony.* $GITHUB_WORKSPACE/test
         working-directory: install
       - name: check built files exist
         run: ls -l
         working-directory: test
+      - name: Check node is available
+        run: node -v
+        working-directory: test
+      - name: run tests
+        run: node test_antimony.js
+        working-directory: test
+        
        
         
         
