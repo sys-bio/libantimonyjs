@@ -11,7 +11,6 @@ jobs:
        ANT_VERS: "2.13.4"
     steps:
       - uses: actions/checkout@v4
-      - run: ls
       - name: get emscripten
         run: git clone https://github.com/emscripten-core/emsdk.git 
       - name: change emsdk script permissions
@@ -29,9 +28,7 @@ jobs:
       - name: confirm emscripten works
         run: emcc -v
       - run: echo $PATH
-      - run: echo $EMSDK
       - run: echo $EMSDK_NODE
-      - run: echo $LIBANTIMONY_JS
       - run: mkdir install
       - run: wget https://github.com/libexpat/libexpat/releases/download/R_2_2_10/expat-2.2.10.tar.bz2
       - run: tar -xf expat-2.2.10.tar.bz2
