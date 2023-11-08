@@ -9,7 +9,6 @@ jobs:
        EMSDK_NODE: emsdk/node/16.20.0_64bit/bin/node
        SBML_VERS: "5.20.0"
        ANT_VERS: "2.13.4"
-  job1:
     steps:
       - uses: actions/checkout@v4
       - name: get emscripten
@@ -84,15 +83,12 @@ jobs:
       - name: List build libantimonyjs files
         run: ls -l
         working-directory: install
-      -name: Copy libantimonyjs to test dir
+      - name: Copy libantimonyjs to test dir
         run: cp libantimonyjs.* test
         working-directory: install
-  job2:
-     needs: job1
-     steps:
-       - name: check files
-         run: ls -l
-         working-directory: test
+      - name: Test: check files exist
+        run: ls -l
+        working-directory: test
        
         
         
