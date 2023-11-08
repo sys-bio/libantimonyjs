@@ -24,7 +24,6 @@ jobs:
         working-directory: emsdk
       - run: echo "$GITHUB_WORKSPACE/emsdk/upstream/emscripten" >> $GITHUB_PATH
       - run: echo "$GITHUB_WORKSPACE/emsdk" >> $GITHUB_PATH
-      - run: echo $GITHUB_PATH
       - name: confirm emscripten works
         run: emcc -v
       - run: echo $PATH
@@ -93,7 +92,7 @@ jobs:
         run: node -v
         working-directory: test
       - name: run tests
-        run: node test_antimony.js
+        run: node test_antimony.js |grep 'Fail:  0'
         working-directory: test
         
        
