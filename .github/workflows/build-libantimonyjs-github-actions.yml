@@ -100,10 +100,14 @@ jobs:
       - name: Check test results
         run: grep 'Fail- 0' results.txt
         working-directory: test
-      - name: Check test results 2
-        run: grep 'Fail- 1' results.txt
+      - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add libantimony.js libantimony.wasm generated.txt
+          git commit -m "generated"
+          git push
         working-directory: test
-      
         
        
         
