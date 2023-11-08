@@ -94,15 +94,16 @@ jobs:
       - name: run tests
         run: node test_antimony.js >> results.txt
         working-directory: test
-      - name: Check test results
-        run: grep 'Fail- 0'results.txt
-        working-directory: test
-      - name: Check test results 2
-        run: grep 'Fail-0' results.txt
-        working-directory: test
       - name: output test results
         run: cat results.txt
         working-directory: test
+      - name: Check test results
+        run: grep 'Fail-0' results.txt
+        working-directory: test
+      - name: Check test results 2
+        run: grep 'Fail- 0' results.txt
+        working-directory: test
+      
         
        
         
