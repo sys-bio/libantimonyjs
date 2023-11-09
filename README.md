@@ -25,7 +25,8 @@ The software requirements:
    - After installing Emscripten, remember to set up the EMSDK environment: 
    - Ex: ``` source "/home/user/emsdk_install_dir/emsdk_env.sh" ```
    - Check by typing `emcc -v` in your home directory.
-  
+   
+Refer to [Build libantimonyjs on GitHub](https://github.com/sys-bio/libantimonyjs#build-libantimonyjs-on-github-using-workflow-actions) for building libantimony directly on GitHub.  
 
 ### Build steps
 After installing this project locally, from a terminal (BASH) window set the environment variable `LIBANTIMONYJS_DIR` to the root directory of the build (ex: `export LIBANTIMONYJS_DIR=~/build_antjs/libantimonyjs`). Next `mkdir $LIBANTIMONYJS_DIR/install`, this will be where all of the final files will be located.
