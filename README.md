@@ -64,7 +64,7 @@ After installing this project locally, from a terminal (BASH) window set the env
 It is straightforward to add wrappers for Antimony functions currently not included (Only ~10% of the functions currently have javascript wrappers). Refer to `../antimony/src/antimony_api.h` for available function calls.
 
 ## Build Libantimonyjs on GitHub using workflow actions.
-Workflow is currently initiated maunally.
+Workflow is currently initiated manually.
 - Go to Actions page of repository and pick 'build-libantimonyjs-github-actions' on leftside of page.
 - Click the 'Run workflow' drop-down button.
 - Enter the Antimony and LibSBML version you wish to use for the build.
