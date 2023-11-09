@@ -3,14 +3,7 @@ run-name: ${{ github.actor }} is building libantimonyjs
 on:
   workflow_dispatch:
     inputs:
-      antimony_version:
-        description: 'Antimony version number'
-        required: true
-        default: '2.13.4'
-      libsbml_version:
-        description: 'LibSBML version number'
-        required: true
-        default: '5.20.0'
+      name: 
   push:
     branches:
       - 'main'
@@ -20,8 +13,8 @@ jobs:
     env:
        EMSDK: emsdk
        EMSDK_NODE: emsdk/node/16.20.0_64bit/bin/node
-       SBML_VERS: ${{ inputs.libsbml_version }}
-       ANT_VERS: ${{ inputs.antimony_version }}
+       SBML_VERS: "5.20.0"
+       ANT_VERS: "2.13.3"
     steps:
       - uses: actions/checkout@v4
       - name: get emscripten
