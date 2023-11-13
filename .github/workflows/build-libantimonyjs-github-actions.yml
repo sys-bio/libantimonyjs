@@ -119,17 +119,17 @@ jobs:
         working-directory: install
       - name: generate ReleaseInfo.txt
         run: echo "libantimonyjs release $ANT_VERS" > v$ANT_VERS/ReleaseInfo.txt
-        working-directory: install
+        working-directory: release
       - run: echo "libSBML source- $SBML_VERS" >> v$ANT_VERS/ReleaseInfo.txt
-        working-directory: install
+        working-directory: release
       - run: echo "Antimony source- $ANT_VERS" >> v$ANT_VERS/ReleaseInfo.txt
-        working-directory: install
+        working-directory: release
       - run: echo "Emscripten version- $EMSCRIPTEN_VERS" >> v$ANT_VERS/ReleaseInfo.txt
-        working-directory: install
+        working-directory: release
       - run: echo "Following methods are available- From Antimony library - _loadString, _loadAntimonyString, _loadSBMLString, _clearPreviousLoads, _getAntimonyString, _freeAll, _getSBMLString, _getCompSBMLString, _getLastError, _getWarnings, _getSBMLInfoMessages, _getSBMLWarnings." >> v$ANT_VERS/ReleaseInfo.txt
-        working-directory: install
+        working-directory: release
       - run: echo "From Emscripten - _malloc, _free, ccall, cwrap, allocateUTF8, UTF8ToString." >> v$ANT_VERS/ReleaseInfo.txt
-        working-directory: install  
+        working-directory: release  
       - name: Copy libantimonyjs to docs dir
         run: cp -f libantimony.* $GITHUB_WORKSPACE/docs
         working-directory: install
