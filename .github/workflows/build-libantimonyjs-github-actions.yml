@@ -118,7 +118,7 @@ jobs:
         run: cp libantimony.* $GITHUB_WORKSPACE/release/v$ANT_VERS
         working-directory: install
       - name: generate ReleaseInfo.txt
-        run: echo "libantimonyjs release $ANT_VERS" >> v$ANT_VERS/ReleaseInfo.txt
+        run: echo "libantimonyjs release $ANT_VERS" > v$ANT_VERS/ReleaseInfo.txt
         working-directory: install
       - run: echo "libSBML source- $SBML_VERS" >> v$ANT_VERS/ReleaseInfo.txt
         working-directory: install
