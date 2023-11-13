@@ -138,9 +138,9 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add v$ANT_VERS/libantimony.js v$ANT_VERS/libantimony.wasm v$ANT_VERS/ReleaseInfo.txt
-          git commit -m "new build for antimony v$ANT_VERS"
+          git commit -m "new build for antimony v$ANT_VERS" release/v$ANT_VERS/libantimony.js release/v$ANT_VERS/libantimony.wasm release/v$ANT_VERS/ReleaseInfo.txt docs/libantimony.js docs/libantimony.wasm docs/ReleaseInfo.txt
           git push
-        working-directory: release
+      
         
        
         
