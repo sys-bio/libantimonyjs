@@ -135,7 +135,8 @@ jobs:
       - name: Copy libantimonyjs to docs dir
         run: cp -f libantimony.* $GITHUB_WORKSPACE/docs
         working-directory: install
-      - run: |
+      - name: Check in changes
+        run: |
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
