@@ -130,6 +130,8 @@ jobs:
         working-directory: release
       - run: echo "From Emscripten - _malloc, _free, ccall, cwrap, allocateUTF8, UTF8ToString." >> v$ANT_VERS/ReleaseInfo.txt
         working-directory: release  
+      - run: cp -f v$ANT_VERS/ReleaseInfo.txt $GITHUB_WORKSPACE/docs
+        working-directory: release
       - name: Copy libantimonyjs to docs dir
         run: cp -f libantimony.* $GITHUB_WORKSPACE/docs
         working-directory: install
