@@ -1,0 +1,188 @@
+<html lang="en">
+  <head>
+  <script src="libantimony.js" type="text/javascript"></script> 
+  <script src="libantimony.wasm" type="application/wasm"> </script> 
+  <script src="antimony_wrap.js" type="text/javascript"></script>  
+  </head>
+	
+<body>
+
+<!-- Test Antimony javascript library -->
+
+<script type="text/javascript">
+var antString = "model example1; S1 -> S2; k1*S1 ; S1 = 550; S2 = 0;  k1 = 0.1; end"
+var antCode;
+var sbmlCode;
+var sbmlResult = 'None';
+var antResult = 'None';
+
+// Load library (asynchronous call):
+var antimonyLibrary; // Holds libantimony
+try {
+ libantimony().then((libantimony) => {
+  antimonyLibrary = new AntimonyWrapper(libantimony);
+ });
+}
+catch(err) {
+  console.log('Load libantimony error: ', err);
+}
+
+
+// Test functionality:
+function runAntimonyCheck() {
+  // Test 1 convertAntimonyToSBML():
+  sbmlCode = '';
+  var result =  antimonyLibrary.convertAntimonyToSBML(antString) ; 
+  console.log('** TEST 1: convertAntimonyToSBML():');
+  sbmlResult = result.getStrResult();
+  console.log('Antimony model: ', antString);
+  console.log('load ant return success:' ,result.isSuccess());
+  console.log('SBML: ' ,sbmlResult);
+  console.log('getWarnings: ', result.getWarnings());
+  console.log('*** End test 1 ***');
+
+  // TEST 2 convertSBMLToAntimony():
+  result = antimonyLibrary.convertSBMLToAntimony( sbmlResult );
+  console.log('** TEST 2: convertSBMLToAntimony(), return success:' , result.isSuccess());
+  console.log('Antimony string: ' ,result.getStrResult());
+  console.log('getWarnings: ', result.getWarnings());
+  console.log('*** End test 2 ***');
+
+  // TEST 3 check warning when converting from SBML to Antimony (rxn rate has param 'S' with no 'value' attribute) :
+  antString = "model example1; S1 -> S2; k1*S ; S1 = 550; S2 = 0;  k1 = 0.1; end"
+  result =  antimonyLibrary.convertAntimonyToSBML(antString) ; 
+  sbmlResult = result.getStrResult();
+  result = antimonyLibrary.convertSBMLToAntimony( sbmlResult );
+  console.log('** TEST 3: check for SBML warning, return success:' , result.isSuccess());
+  console.log('Antimony string: ' ,result.getStrResult());
+  console.log('getWarnings: ', result.getWarnings());
+  console.log('*** End test 3 ***');
+
+   // TEST 4 check error found in Antimony ('syntax error, unexpected number') :
+  antString = "model example1; S1 -> S2; k1*S ; S1 = 550 S2 = 0;  k1 = 0.1; end"
+  result =  antimonyLibrary.convertAntimonyToSBML(antString) ; 
+  sbmlResult = result.getStrResult();
+  console.log('** TEST 4: Check syntax error found in Antimony model, return success:' , result.isSuccess());
+  console.log('Result string: ' ,result.getStrResult());
+  console.log('getWarnings: ', result.getWarnings());
+  console.log('*** End test 4 ***');
+  return sbmlResult;
+}
+</script>
+
+<script type="text/javascript">
+
+function processAntimony() {
+ antCode = document.getElementById("antimonycode").value;
+ var result = antimonyLibrary.convertAntimonyToSBML(antCode) ; 
+ //console.log("processAntimony: Success?: ", result.isSuccess());
+ if (result.isSuccess()) {
+   sbmlResult = result.getStrResult(); 
+   document.getElementById("sbmlcode").value = sbmlResult;
+   document.getElementById("procSBMLBtn").disabled = false;
+ }
+ else { 
+   var errStr = result.getStrResult();
+   window.alert(errStr); }
+ 
+}
+
+function processSBML() {
+ sbmlCode = '';
+ sbmlCode = document.getElementById("sbmlcode").value;
+ var result = antimonyLibrary.convertSBMLToAntimony(sbmlCode) ; 
+ //console.log("processSBML: Success?: ", result.isSuccess());
+ if (result.isSuccess()) {
+   antResult = result.getStrResult(); 
+   document.getElementById("antimonycode").value = antResult;
+   document.getElementById("procAntimonyBtn").disabled = false;
+ }
+ else { 
+   var errStr = result.getStrResult();
+   window.alert(errStr); 
+   }
+  
+}
+
+ function processFile(fileStr) {
+ //console.log('Loaded Model str: ', fileStr);
+ try {
+     var result = antimonyLibrary.convertAntimonyToSBML(fileStr)
+     if(result.isSuccess()) {
+	 document.getElementById("antimonycode").value = fileStr; 
+	 document.getElementById("procSBMLBtn").disabled = true;
+	 document.getElementById("sbmlcode").value = "[SBML code here.]";} 
+	 else if (antimonyLibrary.convertSBMLToAntimony(fileStr).isSuccess()){
+	   document.getElementById("sbmlcode").value = fileStr; 
+	   document.getElementById("procAntimonyBtn").disabled = true;
+	   document.getElementById("antimonycode").value = "[Antimony code here.]";
+	   }
+	  else {
+	    var errStr = antimonyLibrary.convertSBMLToAntimony(fileStr).getStrResult();
+		window.alert(errStr);
+		
+		}
+	}
+	catch(err) {
+	  console.log('processing file error: :', err);
+	  window.alert(err);
+	}
+	
+ }
+
+</script>
+<p>
+<strong>Test the libAntimony functions from within JavaScript. </strong>
+</p>
+<p>
+Convert Antimony to SBML or vice-versa:
+<ul>
+
+<li>Load an Antimony or SBML file to be converted: </li>
+ <input type="file" name="inputfile" id="inputfile">
+    <br> 
+    <script type="text/javascript">
+        document.getElementById('inputfile')
+            .addEventListener('change', function() {
+            var fr=new FileReader();
+            fr.onload=function(){
+				var modelString = fr.result;
+				processFile(modelString);
+            }         
+            fr.readAsText(this.files[0]);
+        })
+    </script>
+
+
+</p>
+<p>
+<p>
+<li><label>Or type or paste in your Antimony:</label></li></br>
+<textarea id="antimonycode" rows="20" cols="80" maxlength="100000">
+[Antimony code here.]
+</textarea>
+</p>
+<p>
+<input type = "button" id="procAntimonyBtn" onclick = "processAntimony()" value = "Convert Antimony to SBML">
+</p>
+<p>
+<input type = "button" id="procSBMLBtn" onclick = "processSBML()" value = "Convert SBML to Antimony">
+</p>
+<p>
+<li><label>Or SBML:</label></li></br>
+<textarea id="sbmlcode" rows="20" cols="80" maxlength="100000">
+[SBML code here.]
+</textarea>
+</p>
+</br>
+</p>
+<li><button onclick="runAntimonyCheck()">Test library, View in console.</button></li>
+</br>
+</ul>
+
+</p>
+
+</body>
+
+
+</html>
