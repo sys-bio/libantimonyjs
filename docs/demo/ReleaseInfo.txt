@@ -1,7 +1,7 @@
 libantimonyjs release 2.14b
 libSBML source- 5.20.0
 Antimony source- 2.14
-Emscripten version- 3.1.20 
+Emscripten version- 3.1.56 
 
 Release Notes: 
 - This release adds antimony_wrap.js file which simplifies the use of libantimonyjs. 
