@@ -58,14 +58,14 @@ cd $LIBANTIMONYJS_DIR/antimony
 rm -fr build
 mkdir build
 cd build
-emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/antimony -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -DLIBSBML_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/sbml/include -DLIBSBML_INSTALL_DIR=$LIBANTIMONYJS_DIR/install/sbml -DLIBSBML_LIBRARY=$LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a -DWITH_CELLML=OFF -DWITH_CHECK=OFF -DWITH_COMP_SBML=ON -DWITH_LIBSBML_COMPRESSION=OFF -DWITH_LIBSBML_EXPAT=ON -DWITH_LIBSBML_LIBXML=OFF -DWITH_LIBSBML_XERCES=OFF -DWITH_PYTHON=OFF -DWITH_QTANTIMONY=OFF -DWITH_SBML=ON -DWITH_STATIC_SBML=ON -DWITH_SWIG=OFF
+emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/antimony -DCMAKE_BUILD_TYPE=Release -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -DLIBSBML_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/sbml/include -DLIBSBML_INSTALL_DIR=$LIBANTIMONYJS_DIR/install/sbml -DLIBSBML_LIBRARY=$LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a -DWITH_CELLML=OFF -DWITH_CHECK=OFF -DWITH_COMP_SBML=ON -DWITH_LIBSBML_COMPRESSION=OFF -DWITH_LIBSBML_EXPAT=ON -DWITH_LIBSBML_LIBXML=OFF -DWITH_LIBSBML_XERCES=OFF -DWITH_PYTHON=OFF -DWITH_QTANTIMONY=OFF -DWITH_SBML=ON -DWITH_STATIC_SBML=ON -DWITH_SWIG=OFF
 emmake make
 emmake make install
 
 # Generate the javascript and associated .wasm file:
 echo "Generate antimony javascript and wasm files..."
 cd $LIBANTIMONYJS_DIR/install
-emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$LIBANTIMONYJS_DIR/install/antimony/include -I$LIBANTIMONYJS_DIR/install/sbml/include -I$LIBANTIMONYJS_DIR/install/expat/include $LIBANTIMONYJS_DIR/install/antimony/lib/libantimony.a $LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a $LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,allocateUTF8,UTF8ToString
+emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sSINGLE_FILE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$LIBANTIMONYJS_DIR/install/antimony/include -I$LIBANTIMONYJS_DIR/install/sbml/include -I$LIBANTIMONYJS_DIR/install/expat/include $LIBANTIMONYJS_DIR/install/antimony/lib/libantimony.a $LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a $LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,allocateUTF8,UTF8ToString
  
 
 
