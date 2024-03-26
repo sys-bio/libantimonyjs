@@ -2,9 +2,12 @@ libantimony testing
 
 1. Automated testing with node.js.
   a. Install node.js on system.
-  b. Make sure libantimony.js, .wasm files to be tested are in ../test/ dir along with test_antimony.js.
+  b. Make sure libantimony.js, antimony_wrap.js files to be tested are in ../test/ dir.
   c. set working directory to ../test/, then type command 'node test_antimony.js'  
      Should return number off passed and failed tests.
+  d. then type command 'node test_antimony_wrap.js'  
+     Should return number off passed and failed tests.
+
 
 2. Manually testing through browser.
   Various antimony and sbml models are in the ../test/ directory. O fparticular note:
