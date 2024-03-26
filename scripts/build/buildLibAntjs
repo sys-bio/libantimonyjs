@@ -10,7 +10,7 @@
 # - antimony source code is in $LIBANTIMONYJS_DIR/antimony
 # - Final code will be in $LIBANTIMONYJS_DIR/install
 
-ANT_VERS="2.13.4"
+ANT_VERS="2.14"
 SBML_VERS="5.20.0"
 rm -fr $LIBANTIMONYJS_DIR
 mkdir $LIBANTIMONYJS_DIR
