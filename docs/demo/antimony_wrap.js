@@ -29,7 +29,7 @@ class Result {
    * Returns either model or error string.
    * @returns string
    */
-  getStrResult() {
+  getResult() {
     return this.result;
   }
 
@@ -133,3 +133,7 @@ class AntimonyWrapper {
 
 }
 
+// if module is defined, export the AntimonyWrapper class
+if (typeof module !== 'undefined') {
+  module.exports = AntimonyWrapper;
+}

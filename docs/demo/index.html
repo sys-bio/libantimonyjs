@@ -33,7 +33,7 @@ function runAntimonyCheck() {
   sbmlCode = '';
   var result =  antimonyLibrary.convertAntimonyToSBML(antString) ; 
   console.log('** TEST 1: convertAntimonyToSBML():');
-  sbmlResult = result.getStrResult();
+  sbmlResult = result.getResult();
   console.log('Antimony model: ', antString);
   console.log('load ant return success:' ,result.isSuccess());
   console.log('SBML: ' ,sbmlResult);
@@ -43,26 +43,26 @@ function runAntimonyCheck() {
   // TEST 2 convertSBMLToAntimony():
   result = antimonyLibrary.convertSBMLToAntimony( sbmlResult );
   console.log('** TEST 2: convertSBMLToAntimony(), return success:' , result.isSuccess());
-  console.log('Antimony string: ' ,result.getStrResult());
+  console.log('Antimony string: ' ,result.getResult());
   console.log('getWarnings: ', result.getWarnings());
   console.log('*** End test 2 ***');
 
   // TEST 3 check warning when converting from SBML to Antimony (rxn rate has param 'S' with no 'value' attribute) :
   antString = "model example1; S1 -> S2; k1*S ; S1 = 550; S2 = 0;  k1 = 0.1; end"
   result =  antimonyLibrary.convertAntimonyToSBML(antString) ; 
-  sbmlResult = result.getStrResult();
+  sbmlResult = result.getResult();
   result = antimonyLibrary.convertSBMLToAntimony( sbmlResult );
   console.log('** TEST 3: check for SBML warning, return success:' , result.isSuccess());
-  console.log('Antimony string: ' ,result.getStrResult());
+  console.log('Antimony string: ' ,result.getResult());
   console.log('getWarnings: ', result.getWarnings());
   console.log('*** End test 3 ***');
 
    // TEST 4 check error found in Antimony ('syntax error, unexpected number') :
   antString = "model example1; S1 -> S2; k1*S ; S1 = 550 S2 = 0;  k1 = 0.1; end"
   result =  antimonyLibrary.convertAntimonyToSBML(antString) ; 
-  sbmlResult = result.getStrResult();
+  sbmlResult = result.getResult();
   console.log('** TEST 4: Check syntax error found in Antimony model, return success:' , result.isSuccess());
-  console.log('Result string: ' ,result.getStrResult());
+  console.log('Result string: ' ,result.getResult());
   console.log('getWarnings: ', result.getWarnings());
   console.log('*** End test 4 ***');
   return sbmlResult;
@@ -76,12 +76,12 @@ function processAntimony() {
  var result = antimonyLibrary.convertAntimonyToSBML(antCode) ; 
  //console.log("processAntimony: Success?: ", result.isSuccess());
  if (result.isSuccess()) {
-   sbmlResult = result.getStrResult(); 
+   sbmlResult = result.getResult(); 
    document.getElementById("sbmlcode").value = sbmlResult;
    document.getElementById("procSBMLBtn").disabled = false;
  }
  else { 
-   var errStr = result.getStrResult();
+   var errStr = result.getResult();
    window.alert(errStr); }
  
 }
@@ -92,12 +92,12 @@ function processSBML() {
  var result = antimonyLibrary.convertSBMLToAntimony(sbmlCode) ; 
  //console.log("processSBML: Success?: ", result.isSuccess());
  if (result.isSuccess()) {
-   antResult = result.getStrResult(); 
+   antResult = result.getResult(); 
    document.getElementById("antimonycode").value = antResult;
    document.getElementById("procAntimonyBtn").disabled = false;
  }
  else { 
-   var errStr = result.getStrResult();
+   var errStr = result.getResult();
    window.alert(errStr); 
    }
   
@@ -117,7 +117,7 @@ function processSBML() {
 	   document.getElementById("antimonycode").value = "[Antimony code here.]";
 	   }
 	  else {
-	    var errStr = antimonyLibrary.convertSBMLToAntimony(fileStr).getStrResult();
+	    var errStr = antimonyLibrary.convertSBMLToAntimony(fileStr).getResult();
 		window.alert(errStr);
 		
 		}
