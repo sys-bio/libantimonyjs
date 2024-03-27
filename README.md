@@ -2,6 +2,7 @@
 # libantimonyjs
 
 This repository hosts the build instructions and scripts for the JavaScript wrapper for the C++ library <strong>Antimony</strong> (https://github.com/sys-bio/antimony). Antimony is a modular model definition language used in Systems Biology for modeling chemical networks. This library allows the user to easily convert Antimony models to SBML models [SBML site](https://sbml.org) and vice-versa.  
+- Very simple webpage example: https://sys-bio.github.io/libantimonyjs/demo/
 - View library in action: https://sys-bio.github.io/makesbml/
 
 ## Project structure
