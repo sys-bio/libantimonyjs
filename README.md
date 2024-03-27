@@ -10,10 +10,10 @@ This repository hosts the build instructions and scripts for the JavaScript wrap
 - `scripts` directory: Contains libantimonyjs wrapper for simple translating of Antimony and SBML models.
 -- `build` subdirectory: script for manually building libantimonyjs, normally it is built through GitHub actions.
 - `release` directory: Released javascript wrapper and associated wasm files (libantimony.js and libantimony.wasm) built from instructions below.
-- `.github\workflows` directory: Actions for building libantimony.js on GitHub
+- `.github/workflows` directory: Actions for building libantimony.js on GitHub
 
 ## Using libantimonyjs
-
+- See `../docs/readme.md` for information about using libantimonyjs in your webpage or node.js project.
 
 ## Building libantimonyjs
 It is currently possible to build libantimonyjs on Linux, MacOS and MS Windows Subsystem for Linux (WSL). Briefly, Emscripten (https://emscripten.org/) is used to compile all C/C++ source code into a .wasm (https://webassembly.org/) file and generate javascript wrappers around each Antimony API call.
