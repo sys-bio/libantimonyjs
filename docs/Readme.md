@@ -1,5 +1,6 @@
 
 # Using libantimonyjs in your project.
+Note: The examples described below work with version v2.14b and later. If using an earlier version then you must remember to add libantimony.wasm to your project as the libantimony.js and libantimony.wasm were not combined into one file. 
 
 ## In a webpage
 - For use in a webpage just copy the contents (3 files) of the `../release/v#####` into a suitable subdirectory in your website.
