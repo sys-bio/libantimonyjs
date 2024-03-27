@@ -2,7 +2,7 @@
 # Using libantimonyjs in your project.
 
 ## In a webpage
-- For use in a webpage just copy the contents of the ../release/v##### into a suitable directory in your website.
+- For use in a webpage just copy the contents (3 files) of the `../release/v#####` into a suitable subdirectory in your website.
 - In the webpage where you want to load the libantimony library just insert the following lines into the page so that your code can find the library:
   
   ```
@@ -17,7 +17,7 @@
   var antimonyLibrary; // Holds libantimony
   try {
    libantimony().then((libantimony) => {
-    antimonyLibrary = new AntimonyWrapper(libantimony); // instantiates The AntimonyWrapper class 
+    antimonyLibrary = new AntimonyWrapper(libantimony); // instantiates The AntimonyWrapper class with the libantimony library.
    });
   }
   catch(err) {
@@ -25,25 +25,48 @@
   }
   </script>
   ```
-- Now you can call the Antimony instance to translate Antimony string to SBML string or translate an SBML string to Antimony string:
+- Now you can call the Antimony instance to translate Antimony string to SBML string or translate an SBML string to Antimony string.
+- Example page can be found in `../docs/demo/index.html`   
+  
+## Using node.js 
+- To use in a node.js project just copy the contents (3 files) of the `../release/v#####` into a suitable subdirectory in your project.
+- Next insert the following javascript code into an appropriate place:
+- ```
+  const libantimony = require( './your_location/libantimony.js'); 
+  var antimonyWrapper = require( './your_location/antimony_wrap.js'); 
   ```
-  var result =  antimonyLibrary.convertAntimonyToSBML( antimonyString ) ;
-  if(result.isSuccess()) {
-    sbmlResult = result.getResult(); }
+- Load the libantimony library the same way as in a webpage:
+- ```
+    // Load library (asynchronous call):
+  var antimonyLibrary; // Holds libantimony
+  try {
+   libantimony().then((libantimony) => {
+    antimonyLibrary = new AntimonyWrapper(libantimony); // instantiates The AntimonyWrapper class with the libantimony library.
+   });
+  }
+  catch(err) {
+    console.log("Load libantimony error: ", err);
+  }
   ```
-  or:
-  ```
-  result = antimonyLibrary.convertSBMLToAntimony( sbmlString );
-  if(result.isSuccess()) {
-    sbmlResult = result.getResult(); }
-  ```  
-- Both of these methods returns a Result object which has three methods:
-- `result.getResult()`: Returns the translated string or the error message if isSuccess() is false.
-- `result.isSuccess()`: 
-- `result.getWarnings()` : returns any warnings generated from the translation (Note: isSuccess will often return true if there are warnings.)
-- dsf
-## In node.js 
-
+- Now you can call the Antimony instance to translate Antimony string to SBML string or translate an SBML string to Antimony string.
+- An example is ```../test/test_wrap_antimony.js```
+  
 ## The basic APIs:
-- 
+Below are the two basic methods of the AntimonyWrapper class used to get the translations:
+- Convert Antimony to SBML:
+   ```
+  var conversionResult =  antimonyLibrary.convertAntimonyToSBML( antimonyString ) ;
+  if(conversionResult.isSuccess()) {
+    sbmlResult = conversionResult.getResult(); }
+  ```
+  or convert SBML to Antimony:
+  ```
+  conversionResult = antimonyLibrary.convertSBMLToAntimony( sbmlString );
+  if(conversionResult.isSuccess()) {
+    sbmlResult = conversionResult.getResult(); }
+  ```  
+- Both of these methods return a Result object which has three methods:
+1. `conversionResult.getResult()`: returns the translated string or the error message if isSuccess() is false.
+2. `conversionResult.isSuccess()`: returns true if successfully translated model, false if error(s).
+3. `conversionRresult.getWarnings()` : returns any warnings generated from the translation (Note: isSuccess() will often return true if there are only warnings.)
 
