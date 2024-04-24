@@ -117,6 +117,8 @@ jobs:
       - name: Copy libantimonyjs to release dir
         run: cp libantimony.* $GITHUB_WORKSPACE/release/v$ANT_VERS
         working-directory: install
+      - name: Copy antimony_wrap.js to release dir
+        run: cp $GITHUB_WORKSPACE/scripts/antimony_wrap.js $GITHUB_WORKSPACE/release/v$ANT_VERS
       - name: generate ReleaseInfo.txt
         run: echo "libantimonyjs release $ANT_VERS" > v$ANT_VERS/ReleaseInfo.txt
         working-directory: release
