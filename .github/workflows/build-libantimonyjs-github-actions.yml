@@ -132,10 +132,10 @@ jobs:
         working-directory: release
       - run: echo "From Emscripten - _malloc, _free, ccall, cwrap, allocateUTF8, UTF8ToString." >> v$ANT_VERS/ReleaseInfo.txt
         working-directory: release  
-      - run: cp -f v$ANT_VERS/ReleaseInfo.txt $GITHUB_WORKSPACE/docs
+      - run: cp -f v$ANT_VERS/ReleaseInfo.txt $GITHUB_WORKSPACE/docs/demo
         working-directory: release
       - name: Copy libantimonyjs to docs dir
-        run: cp -f libantimony.* $GITHUB_WORKSPACE/docs
+        run: cp -f libantimony.* $GITHUB_WORKSPACE/docs/demo
         working-directory: install
       - name: Check in changes
         run: |
@@ -143,7 +143,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add release/v$ANT_VERS/libantimony.js release/v$ANT_VERS/ReleaseInfo.txt
-          git commit -m "new build for antimony v$ANT_VERS" release/v$ANT_VERS/libantimony.js release/v$ANT_VERS/ReleaseInfo.txt docs/libantimony.js docs/ReleaseInfo.txt
+          git commit -m "new build for antimony v$ANT_VERS" release/v$ANT_VERS/libantimony.js release/v$ANT_VERS/ReleaseInfo.txt docs/demo/libantimony.js docs/demo/ReleaseInfo.txt
           git push
         
         
