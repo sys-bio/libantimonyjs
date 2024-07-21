@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.40 (Build 278) on 2024-07-21 11:24 with libSBML version 5.20.0. -->
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model metaid="COPASI0" id="Olsen2003_peroxidase" name="Olsen2003_peroxidase">
+    <notes>
+      <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+          <title xmlns="http://www.w3.org/1999/xhtml"/>
+          <meta name="qrichtext" content="1"/>
+        </head>
+        <body style="font-family:MS Shell Dlg">
+          <p style="margin-top:18px">
+            <span style="font-size:16pt;font-weight:600">Model of peroxidase oscillations</span>
+          </p>
+          <p>Model from Olsen LF, Hauser MJ, Kummer U. (2003) &quot;Mechanism of protection of peroxidase activity by oscillatory dynamics.&quot;<span style="font-style:italic">Eur. J. Biochem.</span>
+          <span style="font-weight:600">270</span>, 2796-804. It was first deposited in <span style="font-style:italic">JWS</span> and then in <span style="font-style:italic">BioModels</span>, finally it was imported into COPASI using the SBML import facility.</p>
+          <p>
+            <span style="font-weight:600">Notes of the BioModels curators:</span>
+          </p>
+          <p>The current model reproduce the figure 7, panel B of the paper. Note that there is a typo in the figure. The ordinates represent the concentration of peroxyde, as stated in the legend, and not of oxygen. The model has been tested in COPASI (http://www.copasi.org/, build 13).</p>
+          <p>
+            <span style="font-weight:600">Notes of the original version of the SBML file:</span>
+          </p>
+          <p>
+            <a href="http://www.sbml.org/">
+              <span style="font-family:Arial;font-weight:600">SBML</span>
+            </a>
+            <span style="font-family:Arial;font-weight:600"> level 2 code generated for the JWS Online project by Jacky Snoep using </span>
+            <a href="http://pysces.sourceforge.net/">
+              <span style="font-family:Arial;font-weight:600">PySCeS</span>
+            </a>
+            <span style="font-family:Arial;font-weight:600">
+              <br/>
+            </span>Run this model online at <a href="http://jjj.biochem.sun.ac.za/">http://jjj.biochem.sun.ac.za</a>
+            <br/>To cite JWS Online please refer to: Olivier, B.G. and Snoep, J.L. (2004) <a href="http://bioinformatics.oupjournals.org/cgi/content/abstract/20/13/2143">Web-based modelling using JWS Online</a>, Bioinformatics, 20:2143-2144 </p>
+          </body>
+        </html>
+      </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#COPASI0">
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2024-07-21T17:23:52Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2024-07-21T17:23:52Z</dcterms:W3CDTF>
+          </dcterms:modified>
+        </rdf:Description>
+      </rdf:RDF>
+      <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
+        <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+          <rdf:Description rdf:about="#COPASI0">
+            <dcterms:created>
+              <rdf:Description>
+                <dcterms:W3CDTF>2024-07-21T17:23:52Z</dcterms:W3CDTF>
+              </rdf:Description>
+            </dcterms:created>
+          </rdf:Description>
+        </rdf:RDF>
+      </copasi:COPASI>
+    </annotation>
+    <listOfFunctionDefinitions>
+      <functionDefinition id="function_4_v7" name="function_4_v7">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k7 </ci>
+            </bvar>
+            <bvar>
+              <ci> super </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k7 </ci>
+              <ci> super </ci>
+              <ci> super </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v9" name="function_4_v9">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k9 </ci>
+            </bvar>
+            <bvar>
+              <ci> NADrad </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k9 </ci>
+              <ci> NADrad </ci>
+              <ci> NADrad </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v14" name="function_4_v14">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k14 </ci>
+            </bvar>
+            <bvar>
+              <ci> Ar </ci>
+            </bvar>
+            <bvar>
+              <ci> NADH </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k14 </ci>
+              <ci> Ar </ci>
+              <ci> NADH </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v2" name="function_4_v2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k2 </ci>
+            </bvar>
+            <bvar>
+              <ci> H2O2 </ci>
+            </bvar>
+            <bvar>
+              <ci> per3 </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> H2O2 </ci>
+              <ci> per3 </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v132" name="function_4_v132">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k13b </ci>
+            </bvar>
+            <bvar>
+              <ci> O2 </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k13b </ci>
+              <ci> O2 </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v6" name="function_4_v6">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k6 </ci>
+            </bvar>
+            <bvar>
+              <ci> super </ci>
+            </bvar>
+            <bvar>
+              <ci> per3 </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k6 </ci>
+              <ci> super </ci>
+              <ci> per3 </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v131" name="function_4_v131">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k13f </ci>
+            </bvar>
+            <bvar>
+              <ci> O2g </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k13f </ci>
+              <ci> O2g </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v3" name="function_4_v3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k3 </ci>
+            </bvar>
+            <bvar>
+              <ci> coI </ci>
+            </bvar>
+            <bvar>
+              <ci> ArH </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k3 </ci>
+              <ci> coI </ci>
+              <ci> ArH </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v12" name="function_4_v12">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k12 </ci>
+            </bvar>
+            <ci> k12 </ci>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v4" name="function_4_v4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k4 </ci>
+            </bvar>
+            <bvar>
+              <ci> coII </ci>
+            </bvar>
+            <bvar>
+              <ci> ArH </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k4 </ci>
+              <ci> coII </ci>
+              <ci> ArH </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v1" name="function_4_v1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k1 </ci>
+            </bvar>
+            <bvar>
+              <ci> NADH </ci>
+            </bvar>
+            <bvar>
+              <ci> O2 </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> NADH </ci>
+              <ci> O2 </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v5" name="function_4_v5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k5 </ci>
+            </bvar>
+            <bvar>
+              <ci> NADrad </ci>
+            </bvar>
+            <bvar>
+              <ci> O2 </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k5 </ci>
+              <ci> NADrad </ci>
+              <ci> O2 </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v8" name="function_4_v8">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k8 </ci>
+            </bvar>
+            <bvar>
+              <ci> coIII </ci>
+            </bvar>
+            <bvar>
+              <ci> NADrad </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k8 </ci>
+              <ci> coIII </ci>
+              <ci> NADrad </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v10" name="function_4_v10">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k10 </ci>
+            </bvar>
+            <bvar>
+              <ci> per3 </ci>
+            </bvar>
+            <bvar>
+              <ci> NADrad </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k10 </ci>
+              <ci> per3 </ci>
+              <ci> NADrad </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="function_4_v11" name="function_4_v11">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> k11 </ci>
+            </bvar>
+            <bvar>
+              <ci> per2 </ci>
+            </bvar>
+            <bvar>
+              <ci> O2 </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k11 </ci>
+              <ci> per2 </ci>
+              <ci> O2 </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfUnitDefinitions>
+      <unitDefinition id="length" name="length">
+        <listOfUnits>
+          <unit kind="metre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="area" name="area">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="volume" name="volume">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time" name="time">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance" name="substance">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-6" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="compartment" name="compartment" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="NADH" name="NADH" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="O2" name="O2" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="H2O2" name="H2O2" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="per3" name="per3" compartment="compartment" initialConcentration="1.40000017203185" boundaryCondition="false" constant="false"/>
+      <species id="coI" name="coI" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="ArH" name="ArH" compartment="compartment" initialConcentration="500.000061439945" boundaryCondition="false" constant="false"/>
+      <species id="coII" name="coII" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="Ar" name="Ar" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="NADrad" name="NADrad" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="super" name="super" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="coIII" name="coIII" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="per2" name="per2" compartment="compartment" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="NAD2" name="NAD2" compartment="compartment" initialConcentration="0" boundaryCondition="true" constant="true"/>
+      <species id="NAD" name="NAD" compartment="compartment" initialConcentration="0" boundaryCondition="true" constant="true"/>
+      <species id="O2g" name="O2g" compartment="compartment" initialConcentration="12.0000014745587" boundaryCondition="true" constant="true"/>
+      <species id="NADHres" name="NADHres" compartment="compartment" initialConcentration="0" boundaryCondition="true" constant="true"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="v1" name="v1" reversible="true">
+        <listOfReactants>
+          <speciesReference species="NADH" stoichiometry="1"/>
+          <speciesReference species="O2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="H2O2" stoichiometry="1"/>
+          <speciesReference species="NAD" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v1 </ci>
+                <ci> k1 </ci>
+                <ci> NADH </ci>
+                <ci> O2 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k1" name="k1" value="3e-06"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v2" name="v2" reversible="true">
+        <listOfReactants>
+          <speciesReference species="per3" stoichiometry="1"/>
+          <speciesReference species="H2O2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="coI" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v2 </ci>
+                <ci> k2 </ci>
+                <ci> H2O2 </ci>
+                <ci> per3 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k2" name="k2" value="18"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v3" name="v3" reversible="true">
+        <listOfReactants>
+          <speciesReference species="ArH" stoichiometry="1"/>
+          <speciesReference species="coI" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ar" stoichiometry="1"/>
+          <speciesReference species="coII" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v3 </ci>
+                <ci> k3 </ci>
+                <ci> coI </ci>
+                <ci> ArH </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k3" name="k3" value="0.15"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v4" name="v4" reversible="true">
+        <listOfReactants>
+          <speciesReference species="coII" stoichiometry="1"/>
+          <speciesReference species="ArH" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="per3" stoichiometry="1"/>
+          <speciesReference species="Ar" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v4 </ci>
+                <ci> k4 </ci>
+                <ci> coII </ci>
+                <ci> ArH </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k4" name="k4" value="0.0052"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v5" name="v5" reversible="true">
+        <listOfReactants>
+          <speciesReference species="NADrad" stoichiometry="1"/>
+          <speciesReference species="O2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NAD" stoichiometry="1"/>
+          <speciesReference species="super" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v5 </ci>
+                <ci> k5 </ci>
+                <ci> NADrad </ci>
+                <ci> O2 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k5" name="k5" value="20"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v6" name="v6" reversible="true">
+        <listOfReactants>
+          <speciesReference species="per3" stoichiometry="1"/>
+          <speciesReference species="super" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="coIII" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v6 </ci>
+                <ci> k6 </ci>
+                <ci> super </ci>
+                <ci> per3 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k6" name="k6" value="17"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v7" name="v7" reversible="true">
+        <listOfReactants>
+          <speciesReference species="super" stoichiometry="2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="H2O2" stoichiometry="1"/>
+          <speciesReference species="O2" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v7 </ci>
+                <ci> k7 </ci>
+                <ci> super </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k7" name="k7" value="20"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v8" name="v8" reversible="true">
+        <listOfReactants>
+          <speciesReference species="NADrad" stoichiometry="1"/>
+          <speciesReference species="coIII" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NAD" stoichiometry="1"/>
+          <speciesReference species="coI" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v8 </ci>
+                <ci> k8 </ci>
+                <ci> coIII </ci>
+                <ci> NADrad </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k8" name="k8" value="40"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v9" name="v9" reversible="true">
+        <listOfReactants>
+          <speciesReference species="NADrad" stoichiometry="2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NAD2" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v9 </ci>
+                <ci> k9 </ci>
+                <ci> NADrad </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k9" name="k9" value="60"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v10" name="v10" reversible="true">
+        <listOfReactants>
+          <speciesReference species="per3" stoichiometry="1"/>
+          <speciesReference species="NADrad" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="per2" stoichiometry="1"/>
+          <speciesReference species="NAD" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v10 </ci>
+                <ci> k10 </ci>
+                <ci> per3 </ci>
+                <ci> NADrad </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k10" name="k10" value="1.8"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v11" name="v11" reversible="true">
+        <listOfReactants>
+          <speciesReference species="per2" stoichiometry="1"/>
+          <speciesReference species="O2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="coIII" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v11 </ci>
+                <ci> k11 </ci>
+                <ci> per2 </ci>
+                <ci> O2 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k11" name="k11" value="0.1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v12" name="v12" reversible="true">
+        <listOfReactants>
+          <speciesReference species="NADHres" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NADH" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v12 </ci>
+                <ci> k12 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k12" name="k12" value="0.08"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v131" name="v131" reversible="true">
+        <listOfReactants>
+          <speciesReference species="O2g" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="O2" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v131 </ci>
+                <ci> k13f </ci>
+                <ci> O2g </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k13f" name="k13f" value="0.006"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v132" name="v132" reversible="true">
+        <listOfReactants>
+          <speciesReference species="O2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="O2g" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v132 </ci>
+                <ci> k13b </ci>
+                <ci> O2 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k13b" name="k13b" value="0.006"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="v14" name="v14" reversible="true">
+        <listOfReactants>
+          <speciesReference species="NADH" stoichiometry="1"/>
+          <speciesReference species="Ar" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NADrad" stoichiometry="1"/>
+          <speciesReference species="ArH" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <apply>
+                <ci> function_4_v14 </ci>
+                <ci> k14 </ci>
+                <ci> Ar </ci>
+                <ci> NADH </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k14" name="k14" value="0.7"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
