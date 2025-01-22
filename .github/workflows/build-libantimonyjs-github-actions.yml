@@ -6,11 +6,11 @@ on:
       antimony_version:
         description: 'Antimony version number'
         required: true
-        default: '2.13.4'
+        default: '2.15.0'
       libsbml_version:
         description: 'LibSBML version number'
         required: true
-        default: '5.20.0'
+        default: '5.20.4'
 jobs:
   build-new-version-antimonyjs:
     runs-on: ubuntu-latest
