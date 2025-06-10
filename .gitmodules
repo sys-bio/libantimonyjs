@@ -13,6 +13,3 @@
 [submodule "third-party/emsdk"]
 	path = third-party/emsdk
 	url = https://github.com/emscripten-core/emsdk.git
-[submodule "third-party/expat"]
-	path = third-party/expat
-	url = https://github.com/libexpat/libexpat.git
