@@ -25,7 +25,7 @@ jobs:
       - name: store libsbml version
         run: 
           var=$(cat third-party/libsbml/VERSION.txt)
-          cat $var >> ${SBML_VERS}
+          echo $var >> ${SBML_VERS}
 
       - name: change emsdk script permissions
         run: chmod +x emsdk
