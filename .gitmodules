@@ -1,0 +1,15 @@
+[submodule "third-party/antimony"]
+	path = third-party/antimony
+	url = https://github.com/sys-bio/antimony.git
+[submodule "third-party/libsbml"]
+	path = third-party/libsbml
+	url = https://github.com/sbmlteam/libsbml.git
+[submodule "third-party/SBMLNetwork"]
+	path = third-party/SBMLNetwork
+	url = https://github.com/sys-bio/SBMLNetwork.git
+[submodule "third-party/libexpat"]
+	path = third-party/libexpat
+	url = https://github.com/libexpat/libexpat.git
+[submodule "third-party/emsdk"]
+	path = third-party/emsdk
+	url = https://github.com/emscripten-core/emsdk.git
