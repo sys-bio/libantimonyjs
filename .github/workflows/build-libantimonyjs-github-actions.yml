@@ -23,7 +23,7 @@ jobs:
           submodules: recursive
 
       - name: store libsbml version
-        run: cat third_party/libsbml/VERSION.txt" >> $SBML_VERS
+        run: cat third_party/libsbml/VERSION.txt >> $SBML_VERS
 
       - name: change emsdk script permissions
         run: chmod +x emsdk
