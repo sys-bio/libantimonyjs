@@ -83,21 +83,21 @@ jobs:
         run: emmake make install
         working-directory: third-party/libsbml/build
 
-      - name: make SBMLnetwork build dir
+      - name: make SBMLNetwork build dir
         run: mkdir build
-        working-directory: third-party/SBMLnetwork
+        working-directory: third-party/SBMLNetwork
 
-      - name: build SBMLnetwork lib
-        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/sbmlnetwork
-        working-directory: third-party/SBMLnetwork/build
+      - name: build SBMLNetwork lib
+        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/sbmlnetwork -DSBMLNETWORK_LIBRARY=$GITHUB_WORKSPACE/install/sbmlnetwork/lib/libsbmlnetwork-static.a -DCMAKE_BUILD_TYPE=Release 
+        working-directory: third-party/SBMLNetwork/build
 
-      - name: Compile SBMLnetwork lib
+      - name: Compile SBMLNetwork lib
         run: emmake make
-        working-directory: third-party/SBMLnetwork/build  
+        working-directory: third-party/SBMLNetwork/build  
 
-      - name: install SBMLnetwork lib
+      - name: install SBMLNetwork lib
         run: emmake make install
-        working-directory: third-party/SBMLnetwork/build
+        working-directory: third-party/SBMLNetwork/build
 
       - name: make antimony build dir 
         run: mkdir build 
