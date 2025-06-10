@@ -22,26 +22,27 @@ jobs:
           fetch-depth: 1
           submodules: recursive
 
-      - name: store libsbml version
+      - name: Store libsbml version
         run: |
           var=$(cat third-party/libsbml/VERSION.txt)
           echo SBML_VERS="$var" >> "${GITHUB_ENV}"
 
-      - name: change emsdk script permissions
+      - name: Change emsdk script permissions
         run: chmod +x emsdk
         working-directory: third-party/emsdk
 
-      - name: install emscripten sdk
+      - name: Install emscripten sdk
         run: ./emsdk install $EMSCRIPTEN_VERS
         working-directory: third-party/emsdk
 
-      - name: activate emscripten
+      - name: Activate emscripten
         run: ./emsdk activate $EMSCRIPTEN_VERS
         working-directory: third-party/emsdk
 
-      - run: echo "$GITHUB_WORKSPACE/emsdk/upstream/emscripten" >> ${GITHUB_PATH}
-
-      - run: echo "$GITHUB_WORKSPACE/emsdk" >> ${GITHUB_PATH}
+      - name: Save executable dir in PATH.
+        run: |
+          echo "$GITHUB_WORKSPACE/third-party/emsdk/upstream/emscripten" >> ${GITHUB_PATH}
+          echo "$GITHUB_WORKSPACE/third-party/emsdk" >> ${GITHUB_PATH}
 
       - name: confirm emscripten works
         run: |
