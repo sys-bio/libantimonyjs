@@ -23,7 +23,7 @@ jobs:
           submodules: recursive
 
       - name: store libsbml version
-        run: 
+        run: |
           var=$(cat third-party/libsbml/VERSION.txt)
           echo SBML_VERS="$var" >> "${GITHUB_ENV}"
 
@@ -44,7 +44,7 @@ jobs:
       - run: echo "$GITHUB_WORKSPACE/emsdk" >> ${GITHUB_PATH}
 
       - name: confirm emscripten works
-        run: 
+        run: |
           emcc -v
           echo $PATH
           echo $EMSDK_NODE
