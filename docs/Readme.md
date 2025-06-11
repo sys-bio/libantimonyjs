@@ -50,7 +50,7 @@ Note: The examples described below work with version v2.14b and later. If using 
   }
   ```
 - Now you can call the Antimony instance to translate Antimony string to SBML string or translate an SBML string to Antimony string.
-- An example is ```../test/test_wrap_antimony.js```
+- An example is [```../test/test_wrap_antimony.js```](https://github.com/sys-bio/libantimonyjs/blob/develop/test/test_antimony_wrap.js)
   
 ## The basic APIs:
 Below are the two basic methods of the AntimonyWrapper class used to get the translations:
