@@ -158,21 +158,18 @@ jobs:
         run: cp $GITHUB_WORKSPACE/scripts/antimony_wrap.js $GITHUB_WORKSPACE/v$ANT_VERS
 
       - name: generate ReleaseInfo.txt
-        run: echo "libantimonyjs release $ANT_VERS" > v$ANT_VERS/ReleaseInfo.txt
-
-      - name: append to ReleaseInfo.txt
         run: |
+          echo "libantimonyjs release $ANT_VERS" > v$ANT_VERS/ReleaseInfo.txt
           echo "libSBML source- $SBML_VERS" >> v$ANT_VERS/ReleaseInfo.txt
           echo "Antimony source- $ANT_VERS" >> v$ANT_VERS/ReleaseInfo.txt
           echo "Emscripten version- $EMSCRIPTEN_VERS" >> v$ANT_VERS/ReleaseInfo.txt
           echo "Following methods are available- From Antimony library - _loadString, _loadAntimonyString, _loadSBMLString, _clearPreviousLoads, _getAntimonyString, _freeAll, _getSBMLString, _getCompSBMLString, _getLastError, _getWarnings, _getSBMLInfoMessages, _getSBMLWarnings." >> v$ANT_VERS/ReleaseInfo.txt
           echo "From Emscripten - _malloc, _free, ccall, cwrap, allocateUTF8, UTF8ToString." >> v$ANT_VERS/ReleaseInfo.txt
 
-      - name: Copy libantimonyjs to docs dir
-        run: |
-          cp -f v$ANT_VERS/ReleaseInfo.txt $GITHUB_WORKSPACE/docs/demo
-          cp -f libantimony.* $GITHUB_WORKSPACE/docs/demo
-        working-directory: install
+      # - name: Copy libantimonyjs to docs dir
+      #   run: |
+      #     cp -f v$ANT_VERS/ReleaseInfo.txt $GITHUB_WORKSPACE/docs/demo
+      #     cp -f install/libantimony.* $GITHUB_WORKSPACE/docs/demo
 
       # - name: Check in changes
       #   run: |
@@ -187,4 +184,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: libantimonyjs_${{env.ANT_VERS}}
-          path: ${{env.ANT_VERS}}/
+          path: v${{env.ANT_VERS}}/
