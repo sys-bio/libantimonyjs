@@ -169,7 +169,8 @@ jobs:
       - name: Copy libantimonyjs to demo dir
         run: |
           cp -f v$ANT_VERS/ReleaseInfo.txt $GITHUB_WORKSPACE/docs/demo
-          cp -f install/libantimony.* $GITHUB_WORKSPACE/docs/demo
+          cp -f install/libantimonyjs.* $GITHUB_WORKSPACE/docs/demo
+          cp -f install/antimony_wrap.* $GITHUB_WORKSPACE/docs/demo
 
       # - name: Check in changes
       #   run: |
