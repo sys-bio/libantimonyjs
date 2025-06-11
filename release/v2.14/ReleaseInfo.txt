@@ -1,6 +1,0 @@
-libantimonyjs release 2.14
-libSBML source- 5.20.0
-Antimony source- 2.14
-Emscripten version- 3.1.20
-Following methods are available- From Antimony library - _loadString, _loadAntimonyString, _loadSBMLString, _clearPreviousLoads, _getAntimonyString, _freeAll, _getSBMLString, _getCompSBMLString, _getLastError, _getWarnings, _getSBMLInfoMessages, _getSBMLWarnings.
-From Emscripten - _malloc, _free, ccall, cwrap, allocateUTF8, UTF8ToString.
