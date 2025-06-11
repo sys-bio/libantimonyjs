@@ -170,7 +170,7 @@ jobs:
         run: |
           cp -f v$ANT_VERS/ReleaseInfo.txt $GITHUB_WORKSPACE/docs/demo
           cp -f install/libantimony.* $GITHUB_WORKSPACE/docs/demo
-          cp -f install/antimony_wrap.* $GITHUB_WORKSPACE/docs/demo
+          cp -f $GITHUB_WORKSPACE/scripts/antimony_wrap.* $GITHUB_WORKSPACE/docs/demo
 
       # - name: Check in changes
       #   run: |
