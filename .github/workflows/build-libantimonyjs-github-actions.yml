@@ -158,8 +158,10 @@ jobs:
         run: cp $GITHUB_WORKSPACE/scripts/antimony_wrap.js $GITHUB_WORKSPACE/v$ANT_VERS
 
       - name: generate ReleaseInfo.txt
+        run: echo "libantimonyjs release $ANT_VERS" > v$ANT_VERS/ReleaseInfo.txt
+
+      - name: append to ReleaseInfo.txt
         run: |
-          echo "libantimonyjs release $ANT_VERS" > v$ANT_VERS/ReleaseInfo.txt
           echo "libSBML source- $SBML_VERS" >> v$ANT_VERS/ReleaseInfo.txt
           echo "Antimony source- $ANT_VERS" >> v$ANT_VERS/ReleaseInfo.txt
           echo "Emscripten version- $EMSCRIPTEN_VERS" >> v$ANT_VERS/ReleaseInfo.txt
