@@ -116,7 +116,7 @@ jobs:
         working-directory: third-party/antimony/build
 
       - name: Generate antimony javascript and wasm files
-        run: emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sSINGLE_FILE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$GITHUB_WORKSPACE/install/antimony/include -I$GITHUB_WORKSPACE/install/sbml/include -I$GITHUB_WORKSPACE/install/expat/include $GITHUB_WORKSPACE/install/antimony/lib/libantimony.a $GITHUB_WORKSPACE/install/sbml/lib/libsbml-static.a $GITHUB_WORKSPACE/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,allocateUTF8,UTF8ToString
+        run: emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sSINGLE_FILE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$GITHUB_WORKSPACE/install/antimony/include -I$GITHUB_WORKSPACE/install/sbml/include -I$GITHUB_WORKSPACE/install/expat/include $GITHUB_WORKSPACE/install/antimony/lib/libantimony.a $GITHUB_WORKSPACE/install/sbml/lib/libsbml-static.a $GITHUB_WORKSPACE/install/sbml/lib/libsbmlnetwork-static.a $GITHUB_WORKSPACE/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,allocateUTF8,UTF8ToString
         working-directory: install
 
       - name: List build libantimonyjs files
@@ -147,7 +147,7 @@ jobs:
         run: grep 'Fail- 0' results.txt
         working-directory: test
 
-      - name: Commit new libantimony files
+      - name: Create release directory
         run: mkdir v$ANT_VERS
         working-directory: release
 
@@ -179,7 +179,7 @@ jobs:
         working-directory: release
 
       - name: Copy libantimonyjs to docs dir
-        run: cp -f libantimony.* $GITHUB_WORKSPACE/docs
+        run: cp -f libantimony.* $GITHUB_WORKSPACE/docs/demo
         working-directory: install
 
       - name: Check in changes
@@ -187,14 +187,12 @@ jobs:
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add release/v$ANT_VERS/libantimony.js release/v$ANT_VERS/libantimony.wasm release/v$ANT_VERS/ReleaseInfo.txt
-          git commit -m "new build for antimony v$ANT_VERS" release/v$ANT_VERS/libantimony.js release/v$ANT_VERS/libantimony.wasm release/v$ANT_VERS/ReleaseInfo.txt docs/libantimony.js docs/libantimony.wasm docs/ReleaseInfo.txt
+          git add release/v$ANT_VERS/libantimony.js release/v$ANT_VERS/ReleaseInfo.txt
+          git commit -m "new build for antimony v$ANT_VERS" release/v$ANT_VERS/libantimony.js release/v$ANT_VERS/ReleaseInfo.txt docs/demo/libantimony.js docs/demo/ReleaseInfo.txt
           git push
-        
-        
-       
-        
-        
-      
-        
-        
+
+      # - name: Upload binaries
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ${{env.artifacts_name}}
+      #     path: ${{env.artifacts_path}}
