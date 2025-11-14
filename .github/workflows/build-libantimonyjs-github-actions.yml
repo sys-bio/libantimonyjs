@@ -15,7 +15,7 @@ jobs:
        EMSDK: emsdk
        EMSCRIPTEN_VERS: '3.1.20'
        EMSDK_NODE: emsdk/node/16.20.0_64bit/bin/node
-       ANT_VERS: '3.0.0'
+       ANT_VERS: '3.1.0'
     steps:
       - uses: actions/checkout@v4
         with:
