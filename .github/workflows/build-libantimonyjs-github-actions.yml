@@ -15,7 +15,6 @@ jobs:
        EMSDK: emsdk
        EMSCRIPTEN_VERS: '3.1.20'
        EMSDK_NODE: emsdk/node/16.20.0_64bit/bin/node
-       ANT_VERS: '3.2'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -106,6 +105,11 @@ jobs:
       - name: Build antimony library
         run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/antimony -DCMAKE_BUILD_TYPE=Release -DEXPAT_INCLUDE_DIR=$GITHUB_WORKSPACE/install/expat/include -DEXPAT_LIBRARY=$GITHUB_WORKSPACE/install/expat/lib/libexpat.a -DLIBSBML_INCLUDE_DIR=$GITHUB_WORKSPACE/install/sbml/include -DLIBSBML_INSTALL_DIR=$GITHUB_WORKSPACE/install/sbml -DLIBSBML_LIBRARY=$GITHUB_WORKSPACE/install/sbml/lib/libsbml-static.a -DSBMLNETWORK_LIBRARY=$GITHUB_WORKSPACE/install/sbmlnetwork/lib/libsbmlnetwork-static.a -DSBMLNETWORK_INCLUDE_DIR=$GITHUB_WORKSPACE/install/sbmlnetwork/include -DWITH_CELLML=OFF -DWITH_CHECK=OFF -DWITH_COMP_SBML=ON -DWITH_LIBSBML_COMPRESSION=OFF -DWITH_LIBSBML_EXPAT=ON -DWITH_LIBSBML_LIBXML=OFF -DWITH_LIBSBML_XERCES=OFF -DWITH_PYTHON=OFF -DWITH_QTANTIMONY=OFF -DWITH_SBML=ON -DWITH_STATIC_SBML=ON -DWITH_SWIG=OFF -DBUILD_SHARED_LIBS=OFF
         working-directory: third-party/antimony/build
+
+      - name: Store antimony version
+        run: |
+          var=$(cat third-party/antimony/build/antimony_version.txt)
+          echo ANT_VERS="$var" >> "${GITHUB_ENV}"
 
       - name: Compile antimony lib
         run: emmake make
