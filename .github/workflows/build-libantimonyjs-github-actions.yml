@@ -15,7 +15,7 @@ jobs:
        EMSDK: emsdk
        EMSCRIPTEN_VERS: '3.1.20'
        EMSDK_NODE: emsdk/node/16.20.0_64bit/bin/node
-       ANT_VERS: '3.1.1'
+       ANT_VERS: '3.2'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -88,7 +88,7 @@ jobs:
         working-directory: third-party/SBMLNetwork
 
       - name: build SBMLNetwork lib
-        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/sbmlnetwork -DEXPAT_INCLUDE_DIR=$GITHUB_WORKSPACE/install/expat/include -DEXPAT_LIBRARY=$GITHUB_WORKSPACE/install/expat/lib/libexpat.a -DLIBSBML_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/sbml/ -DLIBSBML_LIBRARY=$GITHUB_WORKSPACE/install/sbml/lib/libsbml-static.a -DCMAKE_BUILD_TYPE=Release 
+        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/sbmlnetwork -DEXPAT_INCLUDE_DIR=$GITHUB_WORKSPACE/install/expat/include -DEXPAT_LIBRARY=$GITHUB_WORKSPACE/install/expat/lib/libexpat.a -DLIBSBML_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/sbml/ -DLIBSBML_LIBRARY=$GITHUB_WORKSPACE/install/sbml/lib/libsbml-static.a -DCMAKE_BUILD_TYPE=Release -DWITH_ZLIB=OFF
         working-directory: third-party/SBMLNetwork/build
 
       - name: Compile SBMLNetwork lib
