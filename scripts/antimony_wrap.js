@@ -70,7 +70,7 @@ class AntimonyWrapper {
     this.freeAll = AntimonyModule.cwrap('freeAll', 'null', ['null']);
     // Emscripten funcs (direct calls):
     this.jsFree = (strPtr) => AntimonyModule._free(strPtr); 
-    this.jsAllocateUTF8 = (newStr) =>  AntimonyModule.allocateUTF8(newStr); 
+    this.jsAllocateUTF8 = (newStr) =>  AntimonyModule.stringToNewUTF8(newStr); 
     // Do not need?:
     this.jsUTF8ToString = (strPtr) => AntimonyModule.UTF8ToString(strPtr);
  

@@ -46,7 +46,7 @@ function loadAntLib(myCallBack) {
    getSBMLInfoMessages = libantimony.cwrap('getSBMLInfoMessages', 'string', ['string']);
    getSBMLWarnings = libantimony.cwrap('getSBMLWarnings', 'string', ['string']);
    freeAll = libantimony.cwrap('freeAll', 'null', ['null']);
-   jsAllocateUTF8 = (newStr) => libantimony.allocateUTF8(newStr);
+   jsAllocateUTF8 = (newStr) => libantimony.stringToNewUTF8(newStr);
    jsUTF8ToString = (strPtr) => libantimony.UTF8ToString(strPtr);
    jsFree = (strPtr) => libantimony._free(strPtr);
    myCallBack();

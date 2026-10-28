@@ -13,8 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
        EMSDK: emsdk
-       EMSCRIPTEN_VERS: '3.1.20'
-       EMSDK_NODE: emsdk/node/16.20.0_64bit/bin/node
+       EMSCRIPTEN_VERS: 'latest'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,7 +46,6 @@ jobs:
         run: |
           emcc -v
           echo $PATH
-          echo $EMSDK_NODE
           mkdir install
 
       - name: make expat build dir
@@ -120,7 +118,7 @@ jobs:
         working-directory: third-party/antimony/build
 
       - name: Generate antimony javascript and wasm files
-        run: emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sSINGLE_FILE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$GITHUB_WORKSPACE/install/antimony/include -I$GITHUB_WORKSPACE/install/sbml/include -I$GITHUB_WORKSPACE/install/expat/include $GITHUB_WORKSPACE/install/antimony/lib/libantimony.a $GITHUB_WORKSPACE/install/sbml/lib/libsbml-static.a $GITHUB_WORKSPACE/install/sbmlnetwork/lib/libsbmlnetwork-static.a $GITHUB_WORKSPACE/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,allocateUTF8,UTF8ToString
+        run: emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sSINGLE_FILE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$GITHUB_WORKSPACE/install/antimony/include -I$GITHUB_WORKSPACE/install/sbml/include -I$GITHUB_WORKSPACE/install/expat/include $GITHUB_WORKSPACE/install/antimony/lib/libantimony.a $GITHUB_WORKSPACE/install/sbml/lib/libsbml-static.a $GITHUB_WORKSPACE/install/sbmlnetwork/lib/libsbmlnetwork-static.a $GITHUB_WORKSPACE/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,stringToNewUTF8,UTF8ToString
         working-directory: install
 
       - name: List build libantimonyjs files
@@ -166,9 +164,9 @@ jobs:
           echo "libantimonyjs release $ANT_VERS" > v$ANT_VERS/ReleaseInfo.txt
           echo "libSBML source- $SBML_VERS" >> v$ANT_VERS/ReleaseInfo.txt
           echo "Antimony source- $ANT_VERS" >> v$ANT_VERS/ReleaseInfo.txt
-          echo "Emscripten version- $EMSCRIPTEN_VERS" >> v$ANT_VERS/ReleaseInfo.txt
+          echo "Emscripten version- $(emcc --version | head -n1)" >> v$ANT_VERS/ReleaseInfo.txt
           echo "Following methods are available- From Antimony library - _loadString, _loadAntimonyString, _loadSBMLString, _clearPreviousLoads, _getAntimonyString, _freeAll, _getSBMLString, _getCompSBMLString, _getLastError, _getWarnings, _getSBMLInfoMessages, _getSBMLWarnings." >> v$ANT_VERS/ReleaseInfo.txt
-          echo "From Emscripten - _malloc, _free, ccall, cwrap, allocateUTF8, UTF8ToString." >> v$ANT_VERS/ReleaseInfo.txt
+          echo "From Emscripten - _malloc, _free, ccall, cwrap, stringToNewUTF8, UTF8ToString." >> v$ANT_VERS/ReleaseInfo.txt
 
       - name: Copy libantimonyjs to demo dir
         run: |
