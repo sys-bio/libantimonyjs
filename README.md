@@ -39,7 +39,7 @@ Refer to [Build libantimonyjs on GitHub](https://github.com/sys-bio/libantimonyj
 1. Build expat library:
    - In the third-party/libexpat/expat directory `mkdir build` and `cd` into this directory.
    - Compile libexpat using emscripten tool emcmake:
-     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/expat`
+     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/expat -DEXPAT_SHARED_LIBS=OFF`
    - Next: `emmake make`
    - Finally: `emmake make install`, libexapt.a should be in the `$LIBANTIMONYJS_DIR/install/expat/lib` directory 
 2. Build SBML library:

@@ -53,7 +53,7 @@ jobs:
         working-directory: third-party/libexpat/expat
 
       - name: build expat lib
-        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/expat
+        run: emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install/expat -DEXPAT_SHARED_LIBS=OFF
         working-directory: third-party/libexpat/expat/build
 
       - name: Compile expat lib
