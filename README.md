@@ -34,7 +34,7 @@ Refer to [Build libantimonyjs on GitHub](https://github.com/sys-bio/libantimonyj
    - Check by typing `emcc -v` in your home directory.
    
 ### Build steps
-- Either use script 'buildLibAntjs' in ../scripts/ or follow the instructions below to build libantimony.js and libantimony.wasm.
+- Follow the instructions below to build libantimony.js and libantimony.wasm.
 
 1. Build expat library:
    - In the third-party/libexpat/expat directory `mkdir build` and `cd` into this directory.
@@ -48,16 +48,22 @@ Refer to [Build libantimonyjs on GitHub](https://github.com/sys-bio/libantimonyj
      `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/sbml -DCMAKE_BUILD_TYPE=Release -DWITH_CPP_NAMESPACE=ON -DWITH_EXPAT=ON -DWITH_LIBXML=OFF -DLIBSBML_SKIP_SHARED_LIBRARY=ON -DENABLE_ARRAYS=ON -DENABLE_COMP=ON -DENABLE_DISTRIB=ON -DENABLE_FBC=ON -DENABLE_GROUPS=ON -DENABLE_MULTI=ON -DENABLE_QUAL=ON -DWITH_STABLE_PACKAGES=ON -DWITH_SWIG=OFF -DEXPAT_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/expat/include -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a`
    - Next `emmake make`
    - Finally: `emmake make install`, libsbml-static.a should be in the `$LIBANTIMONYJS_DIR/install/sbml/lib` directory 
-3. Build Antimony library:
+3. Build SBMLNetwork library:
+   - In the third-party/SBMLNetwork directory `mkdir build` and `cd` into this directory.
+   - Compile SBMLNetwork using emscripten tool emcmake:
+     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/sbmlnetwork -DEXPAT_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/expat/include -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -DLIBSBML_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/sbml/ -DLIBSBML_LIBRARY=$LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a -DCMAKE_BUILD_TYPE=Release -DWITH_ZLIB=OFF -DBUILD_SHARED_LIBS=OFF`
+   - Next `emmake make`
+   - Finally: `emmake make install`, libsbmlnetwork-static.a should be in the `$LIBANTIMONYJS_DIR/install/sbmlnetwork/lib` directory 
+4. Build Antimony library:
    - In the third-party/antimony directory `mkdir build` and `cd` into this directory.
    - Compile libantimony using emscripten tool emcmake:
-     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/antimony -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -DCMAKE_BUILD_TYPE=Release -DLIBSBML_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/sbml/include -DLIBSBML_INSTALL_DIR=$LIBANTIMONYJS_DIR/install/sbml -DLIBSBML_LIBRARY=$LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a -DWITH_CELLML=OFF -DWITH_CHECK=OFF -DWITH_COMP_SBML=ON -DWITH_LIBSBML_COMPRESSION=OFF -DWITH_LIBSBML_EXPAT=ON -DWITH_LIBSBML_LIBXML=OFF -DWITH_LIBSBML_XERCES=OFF -DWITH_PYTHON=OFF -DWITH_QTANTIMONY=OFF -DWITH_SBML=ON -DWITH_STATIC_SBML=ON -DWITH_SWIG=OFF`
+     `emcmake cmake .. -DCMAKE_INSTALL_PREFIX=$LIBANTIMONYJS_DIR/install/antimony -DEXPAT_LIBRARY=$LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -DCMAKE_BUILD_TYPE=Release -DLIBSBML_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/sbml/include -DLIBSBML_INSTALL_DIR=$LIBANTIMONYJS_DIR/install/sbml -DLIBSBML_LIBRARY=$LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a -DWITH_CELLML=OFF -DWITH_CHECK=OFF -DWITH_COMP_SBML=ON -DWITH_LIBSBML_COMPRESSION=OFF -DWITH_LIBSBML_EXPAT=ON -DWITH_LIBSBML_LIBXML=OFF -DWITH_LIBSBML_XERCES=OFF -DWITH_PYTHON=OFF -DWITH_QTANTIMONY=OFF -DWITH_SBML=ON -DWITH_STATIC_SBML=ON -DWITH_SWIG=OFF -DBUILD_SHARED_LIBS=OFF -DSBMLNETWORK_LIBRARY=$LIBANTIMONYJS_DIR/install/sbmlnetwork/lib/libsbmlnetwork-static.a -DSBMLNETWORK_INCLUDE_DIR=$LIBANTIMONYJS_DIR/install/sbmlnetwork/include`
    - Next 'emmake make'
    - Finally `emmake make install`, libantimony.a should be in the `$LIBANTIMONYJS_DIR/install/antimony/lib` directory
-4. Generate javascript wrapper for antimony library:
-   - Once all of the static libraries are built using Emscripten (libexpat.a, libantimony.a, libsbml.a) the javascript wrapper and associated wasm file are generated:
+5. Generate javascript wrapper for antimony library:
+   - Once all of the static libraries are built using Emscripten (libexpat.a, libsbml-static.a, libsbmlnetwork-static.a, libantimony.a) the javascript wrapper and associated wasm file are generated:
    - From the `$LIBANTIMONYJS_DIR\install` directory, generate the wrapper files:
-     `emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sSINGLE_FILE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$LIBANTIMONYJS_DIR/install/antimony/include -I$LIBANTIMONYJS_DIR/install/sbml/include -I$LIBANTIMONYJS_DIR/install/expat/include $LIBANTIMONYJS_DIR/install/antimony/lib/libantimony.a $LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a $LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,stringToNewUTF8,UTF8ToString`
+     `emcc -Oz -sDISABLE_EXCEPTION_CATCHING=0 -sMODULARIZE=1 -sSINGLE_FILE=1 -sEXPORT_NAME=libantimony -sALLOW_MEMORY_GROWTH=1 -I$LIBANTIMONYJS_DIR/install/antimony/include -I$LIBANTIMONYJS_DIR/install/sbml/include -I$LIBANTIMONYJS_DIR/install/expat/include $LIBANTIMONYJS_DIR/install/antimony/lib/libantimony.a $LIBANTIMONYJS_DIR/install/sbml/lib/libsbml-static.a $LIBANTIMONYJS_DIR/install/sbmlnetwork/lib/libsbmlnetwork-static.a $LIBANTIMONYJS_DIR/install/expat/lib/libexpat.a -o libantimony.js -sEXPORTED_FUNCTIONS=_loadString,_loadAntimonyString,_loadSBMLString,_clearPreviousLoads,_getAntimonyString,_getSBMLString,_getCompSBMLString,_getLastError,_getWarnings,_getSBMLInfoMessages,_getSBMLWarnings,_freeAll,_malloc,_free -sEXPORTED_RUNTIME_METHODS=ccall,cwrap,stringToNewUTF8,UTF8ToString`
    - The `sEXPORTED_FUNCTIONS=` lists all of the Antimony function calls with javascript wrappers.  
      
 ## Add/subtract wrapped Antimony API calls.
